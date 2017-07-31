@@ -1,6 +1,7 @@
 # Editors
 vim/bundle
 vim/plugins
+vim/autoload
 vim/ctags
 ac-comphist.dat
 *~
