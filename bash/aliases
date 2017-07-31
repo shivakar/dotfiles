@@ -1,0 +1,74 @@
+#!/usr/bin/env bash
+
+#-------------------------------------------------------------------------------
+# Protect against accidents
+#-------------------------------------------------------------------------------
+alias rm='rm -I --preserve-root'
+alias chown='chown --preserve-root'
+alias chmod='chmod --preserve-root'
+alias chgrp='chgrp --preserve-root'
+
+#-------------------------------------------------------------------------------
+# Directory creation and navigation
+#-------------------------------------------------------------------------------
+alias mkdir='mkdir -pv'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
+# Directory shortcuts
+alias dl='cd ~/Downloads'
+alias dt='cd ~/Desktop'
+alias p='cd ~/Projects'
+
+#-------------------------------------------------------------------------------
+# Directory listing
+#-------------------------------------------------------------------------------
+export LSCOLORS=GxFxCxDxBxegedabagaced
+alias sl=ls
+alias ls='ls --color=auto'
+alias ll='ls -lthr --color=auto'
+
+#-------------------------------------------------------------------------------
+# Colorize
+#-------------------------------------------------------------------------------
+alias diff='colordiff'
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+
+#-------------------------------------------------------------------------------
+# Date and time
+#-------------------------------------------------------------------------------
+alias now='date'
+alias isodate='date +"%Y-%m-%d"'
+alias today='date +"%m/%d/%Y"'
+
+#-------------------------------------------------------------------------------
+# Networking
+#-------------------------------------------------------------------------------
+alias ns='netstat -tulpn'
+alias wget='wget -c'
+
+#-------------------------------------------------------------------------------
+# Sysadmin
+#-------------------------------------------------------------------------------
+alias top='htop'
+alias free='free -g -l -t'
+alias df='df -h'
+alias du='du -h'
+alias psmem='ps aux --sort -rss | head'
+alias pscpu='ps aux --sort -pcpu | head'
+alias path='echo -e ${PATH//:/\\n}'
+
+#-------------------------------------------------------------------------------
+# Programming
+#-------------------------------------------------------------------------------
+alias vi='vim'
+alias emacs='emacs --no-window-system'
+alias g='git status'
+alias gls='git log --graph --oneline --decorate'
+alias gca='git commit -a'
+alias man='man -a'
+alias t='tmux'
+alias ta='tmux a'

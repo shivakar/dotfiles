@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+#-------------------------------------------------------------------------------
+# Golang configuration
+#-------------------------------------------------------------------------------
+[ -d $GOPATH/tmp ] || mkdir $GOPATH/tmp
+export GOPATH=$HOME/Workspace/go
+export PATH=$GOPATH/bin:$PATH
+# TMPDIR is set for the entire system/shell not just golang
+export TMPDIR=$GOPATH/tmp
+# Function to easily jump to anywhere in the GOPATH
+function godir() {
+    basedir="$GOPATH/src"
+    # If not argument is provided, go the $basedir
+    # Otherwise, use the argument as a regex to jump to the first matching path
+    if [ -z $1 ]; then
+	pushd "${basedir}"
+    else
+        newdir=$(find "$GOPATH/src" -type d -path "*{1}*" -print -quit)
+        pushd "${newdir}"
+    fi
+}

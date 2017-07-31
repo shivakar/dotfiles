@@ -1,0 +1,53 @@
+bash
+bash-completion
+clang-4.0 +analyzer
+cloc
+cmake
+colordiff
+coreutils
+cppcheck
+ctags
+doxygen
+elinks +col256
+gcc5
+gcc6
+gdb
+gifsicle
+git
+git
+gmake
+gnupg2
+go
+graphviz
+haskell-platform
+htop
+imagemagick
+lbzip2
+lcov
+less
+lua
+moreutils
+multitail
+nmap
+npm5
+p7zip
+pandoc
+pinentry
+pv
+pwgen
+py-pygments
+py27-pip
+py27-readline
+py27-virtualenvwrapper
+python36
+qrencode
+texlive @2017 +doc +full
+tmux
+tmux-pasteboard
+tree
+uncrustify
+unrar
+vim +huge +lua +perl +python27 +cscope
+wget
+xmlsec
+youtube-dl +ffmpeg +python27

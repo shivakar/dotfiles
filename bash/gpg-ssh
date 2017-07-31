@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+#-------------------------------------------------------------------------------
+# GnuPG, SSH Setup
+#-------------------------------------------------------------------------------
+# Start GPG agent if not already started
+GPG_AGENT_PID=$(pgrep gpg-agent)
+if [[ -z $GPG_AGENT_PID ]]; then
+    pkill ssh-agent
+    pkill gpg-agent
+    echo "Starting gpg-agent"
+    eval $(gpg-agent --daemon --enable-ssh-support \
+        --write-env-file ${HOME}/.gpg-agent-info)
+    GPG_AGENT_PID=$(pgrep gpg-agent)
+    export GPG_AGENT_PID
+fi
+# Source GPG agent info
+if [ -f ${HOME}/.gpg-agent-info ]; then
+    source ${HOME}/.gpg-agent-info
+    export GPG_AGENT_INFO
+    export SSH_AUTH_SOCK
+fi
+# Set GPG TTY
+GPG_TTY=$(tty)
+export GPG_TTY

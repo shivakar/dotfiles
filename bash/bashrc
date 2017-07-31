@@ -1,0 +1,72 @@
+#.bashrc
+
+# Bash Configuration v1.0
+#
+# Create Date: 2017-07-30
+#
+# Modified Dates:
+#
+#
+
+#-------------------------------------------------------------------------------
+# Basics
+#-------------------------------------------------------------------------------
+files="/etc/bashrc $HOME/bin/bash/exports $HOME/bin/bash/aliases
+$HOME/bin/bash/gpg-ssh $HOME/bin/bash/golang
+/opt/local/etc/bash_completion"
+for file in $files; do
+    [ -r "$file" ] && [ -f "$file" ] && source "$file"
+done
+for f in ~/bin/bash/completions/*; do
+   source "$f"
+done
+unset files
+unset file
+unset f
+
+#-------------------------------------------------------------------------------
+# PATH
+#-------------------------------------------------------------------------------
+export PATH=/opt/local/bin:/opt/local/sbin:/opt/local/libexec/gnubin:$PATH
+export PATH=$HOME/bin/commands:$PATH
+
+#-------------------------------------------------------------------------------
+# Prompt
+#-------------------------------------------------------------------------------
+if [ "$(whoami)" == "root" ]; then
+    # Root's prompt (bold red)
+    export PS1='\[\e[1;31m\][\u@\h \w]\$\[\e[0m\] '
+else
+    # Normal user's prompt (bold green)
+    export PS1='\[\e[1;32m\][\u@\h \w]\$\[\e[0m\] '
+fi
+# Terminal window title
+export PROMPT_COMMAND='echo -ne "\033]0;${PWD#$HOME\/}\007"'
+
+#-------------------------------------------------------------------------------
+# Local configuration
+#-------------------------------------------------------------------------------
+if [ -f ~/.localbashrc ] && \
+	([ $0 == "-bash" ] || [ $(basename $0) == "bash" ]); then
+    . $HOME/.localbashrc
+fi
+
+#-------------------------------------------------------------------------------
+# Shell options
+#-------------------------------------------------------------------------------
+# Enable autocomplete
+set autolist
+# Disable terminal audio-visual bell
+set bell-style non
+# Store multi-line commands in a single history entry
+shopt -s cmdhist
+# Enable extended pattern matching operators
+shopt -s extglob
+# Apped history to existing files instead of overwriting
+shopt -s histappend
+# Case-insensitive globbing
+shopt -s nocaseglob
+# Autocorrect typos in path names when using `cd`
+shopt -s cdspell
+# Enable programmable completion
+shopt -s progcomp

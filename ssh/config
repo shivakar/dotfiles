@@ -1,0 +1,3 @@
+Host *
+    GSSAPIAuthentication no
+    User shivakar

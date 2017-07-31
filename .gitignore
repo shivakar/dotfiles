@@ -1,0 +1,27 @@
+# Editors
+vim/bundle
+vim/plugins
+vim/ctags
+ac-comphist.dat
+*~
+
+# Logs
+logs
+*.log
+
+# Runtime data
+pids
+*.pid
+*.seed
+
+# GnuPG
+*.gpg
+private-keys*
+random_seed
+reader*.status
+sshcontrol
+
+# tmux
+tmux/plugins
+!tmux/plugins/tpm
+tmux/resurrect
