@@ -1,0 +1,335 @@
+" Vim Configuration v1.0
+"
+" Create Date: 2017-07-31
+"
+" Modified Dates:
+"
+" ============================== Keyboard shortcuts ==========================
+" Key           Filetype        Action
+" F1
+" F2                            Toggle Nerdtree
+" F3
+" F4
+" F5
+" F6                            Toggle tagbar
+" F7				            Toggle paste mode
+" F8				            Toggle line numbers
+" F9
+" F10
+" F11
+" F12           go              Go to definition
+" space 			            Clear search highlighting
+" <S-tab>			            Cycle through buffers
+" <C-x><Up,Down,Left,Right>	    Move between splits
+" mm                            Toggle bookmark
+" mn                            Jump to next bookmark
+" mp                            Jump to previous bookmark
+" mx                            Clear all bookmarks
+" ll                            Toggle spell check
+" ww                            Next Wordy
+" wn                            Disable Wordy
+" \cc                           Comment using nerdcommenter
+" \cu                           Uncomment using nerdcommenter
+" \c<space>                     Toggle comment state
+" <C-n>                         Enter multi-select mode
+" <C-p>                         Remove current select and move to previous
+" <C-x>                         Skip next select in multi-select
+" \o                            Open changelog file to edit
+" <C-e>                         Fast wrap word using auto-pairs
+" \gd           go              Show all function declaration in the package
+" \ga           go              Open alternate file in a new buffer
+" \gah          go              Open alternate file in a horizontal split
+" \gav          go              Open alternate file in a vertical split
+" \gt           go              Run go test
+" \gc           go              Toggle go coverage
+" <C-t>         go              Return to position after F12 jump
+" ============================================================================
+
+" Don't run in legacy mode
+set nocompatible
+
+" Install vim-plug if we don't already have it
+if empty(glob("~/.vim/autoload/plug.vim"))
+    execute '!curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+    " Create plugins directory
+    execute '!mkdir -p ~/.vim/plugins'
+endif
+
+" Include plugins
+source $HOME/.vim/plugins.vim
+
+" Basics
+syntax on			    " Enable syntax highlighting
+set autowrite 			" Save file before other commands like :next
+set number
+colorscheme luna
+set background=dark
+filetype plugin on
+filetype plugin indent on
+
+" Indentation
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set expandtab
+set smartindent
+"" smart backspace with autoindent
+set backspace=indent,eol,start
+
+" General writing
+"" Enable mouse support
+set mouse=a
+"" Toggle paste mode
+map  <F7> :set paste!<CR>i
+map! <F7> <C-o>:set paste!<CR>i
+"" Toggle line numbers
+map  <F8> :set number! <bar> GitGutterToggle<CR>
+map! <F8> <C-o>:set number! <bar> GitGutterToggle<CR>
+"" Highlight cursor line
+hi CursorLine cterm=None ctermbg=233
+set cursorline
+
+" Search
+"" map space to clear search highlighting and close scratch windows
+nnoremap <silent> <Space> :silent noh<Bar>:pc<Bar>echo<CR>
+set hlsearch 			" Highlight search term
+set incsearch			" Show search while typing
+set ignorecase			" Case insensitive search
+set smartcase			" Override ignorecase if search term has uppercase
+
+" Navigation
+"" Cycle through buffers
+map <S-tab> :bn<CR>
+map! <S-tab> <C-o>:bn<CR>
+"" Move between splits
+map  <C-x><Up>    <C-w>k
+map  <C-x><Down>  <C-w>j
+map  <C-x><Left>  <C-w>h
+map  <C-x><Right> <C-w>l
+map! <C-x><Up>    <C-o><C-w>k
+map! <C-x><Down>  <C-o><C-w>j
+map! <C-x><Left>  <C-o><C-w>h
+map! <C-x><Right> <C-o><C-w>l
+
+" ============================================================================
+" ============================================================================
+" Plugin Configuration
+" ============================================================================
+" ============================================================================
+
+" ============================================================================
+" https://github.com/MattesGroeger/vim-bookmarks
+" ============================================================================
+highlight BookmarkSign ctermbg=NONE ctermfg=160
+highlight BookmarkLine ctermbg=1 ctermfg=NONE
+let g:bookmark_sign='♥'
+let g:bookmark_highlight_lines=1
+let g:bookmark_no_default_key_mappings=1
+let g:bookmark_save_per_working_dir=0
+let g:bookmark_auto_save=1
+nmap mm :BookmarkToggle<CR>
+nmap mn :BookmarkNext<CR>
+nmap mp :BookmarkPrev<CR>
+nmap mx :BookmarkClearAll<CR>
+
+" ============================================================================
+" https://github.com/ntpeters/vim-better-whitespace
+" ============================================================================
+
+" ============================================================================
+" https://github.com/zeke/moby
+" ============================================================================
+
+" ============================================================================
+" https://github.com/reedes/vim-lexical
+" ============================================================================
+let g:lexical#spelllang=['en_us',]
+let g:lexical#thesaurus=['~/.vim/plugins/moby/words.txt',]
+let g:lexical#dictionary=['/usr/share/dict/words',]
+let g:lexical#spellfile=['~/.vim/spell/en.utf-8.add',]
+nmap ll :setlocal spell!<CR>
+
+" ============================================================================
+" https://github.com/reedes/vim-wordy
+" ============================================================================
+nmap ww :NextWordy<CR>
+nmap wn :NoWordy<CR>
+
+" ============================================================================
+" https://github.com/scrooloose/nerdtree
+" ============================================================================
+map  <F2> :NERDTreeToggle<CR>
+map! <F2> <C-o>:NERDTreeToggle<CR>
+
+" ============================================================================
+" https://github.com/easymotion/vim-easymotion
+" ============================================================================
+let g:EasyMotion_do_mapping=0       " Disable default mappings
+let g:EasyMotion_smartcase=1        " Case insensitive search
+map / <Plug>(easymotion-sn)
+
+" ============================================================================
+" https://github.com/ctrlpvim/ctrlp.vim
+" ============================================================================
+let g:ctrlp_map='<c-p>'
+let g:ctrlp_cmd='CtrlP'
+let g:ctrlp_working_path_mode='ra'
+
+" ============================================================================
+" https://github.com/valloric/YouCompleteMe
+" ============================================================================
+let g:ycm_global_ycm_extra_conf="~/.vim/ycm_extra_conf.py"
+" Play nice with Ultisnips and supertab
+let g:ycm_key_list_select_completion=['<c-n>', '<Down>']
+let g:ycm_key_list_previous_completion=['<c-p>', '<Up>']
+
+" ============================================================================
+" https://github.com/ervandew/supertab
+" ============================================================================
+let g:SuperTabDefaultCompletionType='<c-n>'
+
+" ============================================================================
+" https://github.com/SirVer/Ultisnips
+" ============================================================================
+let g:UltiSnipsSnippetsDir="~/.vim/plugins/vim-snippets/UltiSnips"
+let g:UltiSnipsExpandTrigger='<tab>'
+let g:UltiSnipsJumpForwardTrigger='<tab>'
+let g:UltiSnipsJumpBackwardTrigger='<s-tab>'
+
+" ============================================================================
+" https://github.com/shivakar/vim-snippets
+" ============================================================================
+
+" ============================================================================
+" https://github.com/Yggdroot/indentLine
+" ============================================================================
+let g:indentLine_enabled=1
+let g:indentLine_noConcealCursor=""
+map  <leader>g :IndentLinesToggle<CR>
+map! <leader>g <C-o>:IndentLinesToggle<CR>
+
+" ============================================================================
+" https://github.com/airblade/vim-gitgutter
+" ============================================================================
+let g:gitgutter_sign_column_always=1
+let g:gitgutter_highlight_lines=0
+let g:gitgutter_realtime=0
+let g:gitgutter_eager=0
+highlight clear SignColumn
+
+" ============================================================================
+" https://github.com/tpope/vim-fugitive
+" ============================================================================
+
+" ============================================================================
+" https://github.com/scrooloose/nerdcommenter
+" ============================================================================
+let g:NERDSpaceDelims=1
+
+" ============================================================================
+" https://github.com/terryma/vim-multiple-cursors
+" ============================================================================
+
+" ============================================================================
+" https://github.com/godlygeek/tabular
+" ============================================================================
+
+" ============================================================================
+" https://github.com/vim-scripts/gnuchangelog
+" ============================================================================
+
+" ============================================================================
+" https://github.com/jiangmiao/auto-pairs
+" ============================================================================
+let g:AutoPairsShortcutFastWrap='<c-e>'
+let g:AutoPairsMapCR=0
+imap <silent><CR> <CR><Plug>AutoPairsReturn
+
+" ============================================================================
+" https://github.com/majutsushi/tagbar
+" ============================================================================
+map  <F6> :TagbarToggle<CR>
+map! <F6> <C-o>:TagbarToggle<CR>
+
+" ============================================================================
+" https://github.com/mattn/emmet-vim
+" ============================================================================
+let g:user_emmet_install_global=0
+"" Only enabling emmet for HTML and CSS related filetypes
+au FileType html,css EmmetInstall
+au FileType html,css imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
+
+" ============================================================================
+" https://github.com/scrooloose/syntastic
+" ============================================================================
+let g:syntastic_go_checkers=['go', 'golint', 'govet', 'errcheck']
+let g:syntastic_mode_map={ 'mode': 'active' }
+let g:syntastic_always_populate_loc_list=1
+let g:syntastic_auto_loc_list=1
+let g:syntastic_check_on_open=0
+let g:syntastic_check_on_wq=0
+let g:syntastic_aggregate_errors=1
+let g:syntastic_cpp_compiler_options='-Wall -Wextra -Werror -std=c++11 -I/opt/local/include -I/usr/include'
+let g:syntastic_cpp_compiler='clang++'
+let g:syntastic_c_compiler='clang'
+
+" ============================================================================
+" https://github.com/sheerun/vim-polyglot
+" ============================================================================
+let g:markdown_fenced_languages=['go', 'python', 'bash=sh', 'c++=cpp']
+let g:vim_markdown_conceal=0        " Don't hide markdown code
+let g:vim_json_syntax_conceal=0     " Always show quotes
+
+" ============================================================================
+" https://github.com/justmao945/vim-clang
+" ============================================================================
+let g:clang_auto=0
+let g:clang_cpp_options='-std=c++11'
+let g:clang_format_auto=1
+let g:clang_format_style='{BasedOnStyle: Google, IndentWidth: 4, TabWidth: 4, Standard: Cpp11}'
+let g:clang_use_path=1
+let g:clang_c_completeopt='menuone'
+let g:clang_cpp_completeopt='menuone'
+let g:clang_cpp_options='-std=c++11 -stdlib=libc++ -I/opt/local/include -I/usr/include'
+let g:clang_complete_copen=1
+let g:clang_user_options='|| exit 0'
+let g:clang_use_library=1
+let b:clang_user_options='-std=c++11'
+
+" ============================================================================
+" https://github.com/fatih/vim-go
+" ============================================================================
+let g:go_highlight_build_constraints=1
+let g:go_highlight_extra_types=1
+let g:go_highlight_fields=1
+let g:go_highlight_functions=1
+let g:go_highlight_interfaces=1
+let g:go_highlight_methods=1
+let g:go_highlight_operators=1
+let g:go_highlight_structs=1
+let g:go_highlight_types=1
+let g:go_auto_sameids=1
+let g:go_fmt_command="goimports"
+let g:go_fmt_autosave=1
+let g:go_auto_type_info=1
+let g:go_list_type="quickfix"
+let g:go_addtags_transform="snakecase"
+au FileType go nmap <leader>gd :GoDeclsDir<CR>
+au Filetype go nmap <leader>ga <Plug>(go-alternate-edit)
+au Filetype go nmap <leader>gah <Plug>(go-alternate-split)
+au Filetype go nmap <leader>gav <Plug>(go-alternate-vertical)
+au FileType go nmap <leader>gt :GoTest -short<CR>
+au FileType go nmap <leader>gc :GoCoverageToggle -short<CR>
+au FileType go nmap <F12> <Plug>(go-def)
+
+" ============================================================================
+" https://github.com/vim-airline/vim-airline
+" ============================================================================
+set laststatus=2            " Always show the status line
+let g:airline#extensions#tabline#enabled=1 " Enable tabline integration
+let g:airline#extensions#whitespace#enabled=0
+let g:airline#extensions#branch#enabled=1
+let g:airline_section_z='[%p%%, %LL] [%l L, %v]'
+let g:airline_left_sep=''
+let g:airline_right_sep=''
+

@@ -24,7 +24,7 @@ sudo port -q install ${packages}
 exit_on_error "port install failed"
 
 echo "Added macports bash to /etc/shells..."
-grep /opt/local/bin/bash /etc/shells
+grep /opt/local/bin/bash /etc/shells &> /dev/null
 if [ "$?" != "0" ]; then
     echo "/opt/local/bin/bash" | sudo tee -a /etc/shells > /dev/null
     exit_on_error "could not add macports bash to /etc/shells"

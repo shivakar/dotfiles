@@ -11,9 +11,9 @@ export HISTIGNORE='&:ls:exit'
 # Environment variables
 #-------------------------------------------------------------------------------
 export EMAIL='Shivakar Vulli <svulli@shivakar.com>'
-export EDITOR=$(which vim)
-export VISUAL=$(which vim)
-export GIT_EDITOR=$(which vim)
+export EDITOR=vim
+export VISUAL=vim
+export GIT_EDITOR=vim
 export LANG='en_US.UTF-8'
 export LC_ALL='en_US.UTF-8'
 

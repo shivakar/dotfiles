@@ -26,3 +26,6 @@ sshcontrol
 tmux/plugins
 !tmux/plugins/tpm
 tmux/resurrect
+
+# Temporary files
+.netrwhist

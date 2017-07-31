@@ -38,3 +38,16 @@ fi
 ln -sf ~/bin/bash/bashrc ~/.bashrc
 ln -sf ~/bin/bash/bash_profile ~/.bash_profile
 
+#### git config
+ln -sf ~/bin/git/gitconfig ~/.gitconfig
+
+#### vim config
+[ -L ~/.vim ] && rm ~/.vim
+[ -d ~/.vim ] && echo "~/.vim exists. Delete and re-run setup." && exit
+ln -sf ~/bin/vim ~/.vim
+ln -sf ~/bin/vim/vimrc ~/.vimrc
+mkdir -p ~/.vim/autoload
+mkdir -p ~/.vim/plugins
+
+#### Install all vim plugins
+vim +PlugInstall +PlugClean +qall
