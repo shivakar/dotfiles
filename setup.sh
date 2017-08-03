@@ -41,6 +41,15 @@ ln -sf ~/bin/bash/bash_profile ~/.bash_profile
 #### git config
 ln -sf ~/bin/git/gitconfig ~/.gitconfig
 
+#### tmux config
+[ -L ~/.tmux ] && rm ~/.tmux
+[ -d ~/.tmux ] && echo "~/.tmux exists. Delete and re-run setup." && exit
+ln -sf ~/bin/tmux ~/.tmux
+ln -sf ~/bin/tmux/tmux.conf ~/.tmux.conf
+mkdir -p ~/.tmux/plugins
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+~/.tmux/plugins/tpm/bin/install_plugins
+
 #### vim config
 [ -L ~/.vim ] && rm ~/.vim
 [ -d ~/.vim ] && echo "~/.vim exists. Delete and re-run setup." && exit
@@ -51,3 +60,5 @@ mkdir -p ~/.vim/plugins
 
 #### Install all vim plugins
 vim +PlugInstall +PlugClean +qall
+
+echo "dotfiles setup complete..."
