@@ -33,6 +33,7 @@ npm5
 p7zip
 pandoc
 pinentry
+pinentry-mac
 pv
 pwgen
 py-pygments
