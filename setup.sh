@@ -38,6 +38,15 @@ fi
 ln -sf ~/bin/bash/bashrc ~/.bashrc
 ln -sf ~/bin/bash/bash_profile ~/.bash_profile
 
+### ssh config
+[ -L ~/.ssh/config ] && rm ~/.ssh/config
+[ -f ~/.ssh/config ] && \
+    echo "~/.ssh/config exists. Delete and re-run setup." && exit
+mkdir -p ~/.ssh
+ln ~/bin/ssh/config ~/.ssh/config
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/config
+
 #### git config
 ln -sf ~/bin/git/gitconfig ~/.gitconfig
 
