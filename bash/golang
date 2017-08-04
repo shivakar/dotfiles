@@ -14,9 +14,9 @@ function godir() {
     # If not argument is provided, go the $basedir
     # Otherwise, use the argument as a regex to jump to the first matching path
     if [ -z $1 ]; then
-	pushd "${basedir}"
+	    pushd "${basedir}"
     else
-        newdir=$(find "$GOPATH/src" -type d -path "*{1}*" -print -quit)
+        newdir=$(find "$GOPATH/src" -type d -path "*${1}*" -print -quit)
         pushd "${newdir}"
     fi
 }
