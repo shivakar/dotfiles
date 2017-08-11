@@ -1,0 +1,9 @@
+if [ "$(uname)" == "Darwin" ]; then
+    basedir="/Applications/Docker.app/Contents/Resources/etc"
+    ext="bash-completion"
+    files="docker-compose docker-machine docker"
+    for f in ${files}; do
+        file=${basedir}/${f}.${ext}
+        [ -f ${file} ] && source ${file}
+    done
+fi
