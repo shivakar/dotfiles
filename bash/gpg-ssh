@@ -8,8 +8,7 @@ if [[ -z $GPG_AGENT_PID ]]; then
     pkill ssh-agent
     pkill gpg-agent
     echo "Starting gpg-agent"
-    eval $(gpg-agent --daemon --enable-ssh-support \
-        --write-env-file ${HOME}/.gpg-agent-info)
+    eval $(gpg-agent --daemon --enable-ssh-support)
     GPG_AGENT_PID=$(pgrep gpg-agent)
     export GPG_AGENT_PID
 fi
@@ -22,3 +21,12 @@ fi
 # Set GPG TTY
 GPG_TTY=$(tty)
 export GPG_TTY
+
+function reset_ssh_agent() {
+    pkill ssh-agent
+    pkill gpg-agent
+    unset GPG_AGENT_INFO
+    unset GPG_AGENT_PID
+    unset SSH_AUTH_SOCK
+    eval $(ssh-agent)
+}
