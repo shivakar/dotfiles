@@ -20,3 +20,9 @@ function godir() {
         pushd "${newdir}"
     fi
 }
+
+#-------------------------------------------------------------------------------
+# Golang aliases
+#-------------------------------------------------------------------------------
+alias gg="go get -u"
+alias gocover="go test -v -coverprofile=c.out && go tool cover -html=c.out"
