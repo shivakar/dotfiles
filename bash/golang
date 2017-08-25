@@ -3,9 +3,9 @@
 #-------------------------------------------------------------------------------
 # Golang configuration
 #-------------------------------------------------------------------------------
-[ -d $GOPATH/tmp ] || mkdir $GOPATH/tmp
 export GOPATH=$HOME/Workspace/go
 export PATH=$GOPATH/bin:$PATH
+[ -d $GOPATH/tmp ] || mkdir -p $GOPATH/tmp
 # TMPDIR is set for the entire system/shell not just golang
 export TMPDIR=$GOPATH/tmp
 # Function to easily jump to anywhere in the GOPATH
@@ -24,5 +24,5 @@ function godir() {
 #-------------------------------------------------------------------------------
 # Golang aliases
 #-------------------------------------------------------------------------------
-alias gg="go get -u"
+alias gg="go get -v -u"
 alias gocover="go test -v -coverprofile=c.out && go tool cover -html=c.out"

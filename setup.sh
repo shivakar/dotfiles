@@ -11,8 +11,6 @@ if [ "$(uname)" == "Darwin" ]; then
     echo -n "Run setup on a MacOS machine? (yes/NO): "
 elif [ "$(uname)" == "Linux" ]; then
     echo -n "Run setup on a Linux machine? (yes/NO): "
-    echo "Not tested yet..."
-    exit 100
 else
     echo "Unknown OS - $(uname). Exiting..."
     exit 1

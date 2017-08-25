@@ -1,10 +1,11 @@
 #.bashrc
 
-# Bash Configuration v1.0
+# Bash Configuration v1.1
 #
 # Create Date: 2017-07-30
 #
 # Modified Dates:
+#   v1.1    : 2017-08-25. Various bugfixes.
 #
 #
 
@@ -21,7 +22,7 @@ export PATH=$HOME/bin/commands:$PATH
 # Enable autocomplete
 set autolist
 # Disable terminal audio-visual bell
-set bell-style non
+set bell-style none
 # Store multi-line commands in a single history entry
 shopt -s cmdhist
 # Enable extended pattern matching operators
@@ -41,12 +42,16 @@ shopt -s progcomp
 files="/etc/bashrc $HOME/bin/bash/exports $HOME/bin/bash/aliases
 $HOME/bin/bash/gpg-ssh $HOME/bin/bash/golang
 /opt/local/etc/bash_completion"
+
 for file in $files; do
     [ -r "$file" ] && [ -f "$file" ] && source "$file"
 done
-for f in ~/bin/bash/completions/*; do
-   source "$f"
-done
+# Only load bash completions if it is an interactive session
+if [ ! -z "$PS1" ]; then
+    for f in ~/bin/bash/completions/*; do
+        source "$f"
+    done
+fi
 unset files
 unset file
 unset f

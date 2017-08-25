@@ -8,7 +8,8 @@ if [[ -z $GPG_AGENT_PID ]]; then
     pkill ssh-agent
     pkill gpg-agent
     echo "Starting gpg-agent"
-    eval $(gpg-agent --daemon --enable-ssh-support)
+    eval $(gpg-agent --daemon --enable-ssh-support \
+        --write-env-file ${HOME}/.gpg-agent-info)
     GPG_AGENT_PID=$(pgrep gpg-agent)
     export GPG_AGENT_PID
 fi

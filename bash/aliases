@@ -66,9 +66,21 @@ alias path='echo -e ${PATH//:/\\n}'
 #-------------------------------------------------------------------------------
 alias vi='vim'
 alias emacs='emacs --no-window-system'
-alias g='git status'
-alias gls='git log --graph --oneline --decorate'
-alias gca='git commit -a'
 alias man='man -a'
 alias t='tmux'
 alias ta='tmux a'
+
+#-------------------------------------------------------------------------------
+# Git
+#-------------------------------------------------------------------------------
+alias g='git status'
+alias gls='git log --graph --oneline --decorate'
+alias gca='git commit -a'
+alias gdiff='git diff'
+
+#-------------------------------------------------------------------------------
+# AWS
+#-------------------------------------------------------------------------------
+alias als="aws s3 ls"
+alias alh="aws s3 ls --human-readable"
+alias acp="aws s3 cp"
