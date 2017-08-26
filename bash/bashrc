@@ -1,13 +1,16 @@
 #.bashrc
 
-# Bash Configuration v1.1
+# Bash Configuration v1.2
 #
 # Create Date: 2017-07-30
 #
 # Modified Dates:
 #   v1.1    : 2017-08-25. Various bugfixes.
+#   v1.2    : 2017-08-26. Disable load on non interactive sessions
 #
-#
+
+# Don't load this file if this is not an interactive session
+[ -z "$PS1" ] && return
 
 #-------------------------------------------------------------------------------
 # PATH
