@@ -2,6 +2,9 @@
 
 NAME=node
 VERSION=6.11.2
+if [ ! -z "${1}" ]; then
+    VERSION="${1}"
+fi
 NAMEVER=${NAME}-${VERSION}
 BASEURL=https://nodejs.org/dist/v${VERSION}/node-v${VERSION}.tar.gz
 

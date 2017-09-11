@@ -2,6 +2,9 @@
 
 NAME=tmux
 VERSION=2.5
+if [ ! -z "${1}" ]; then
+    VERSION="${1}"
+fi
 NAMEVER=${NAME}-${VERSION}
 BASEURL=https://github.com/tmux/tmux/releases/download/${VERSION}/${NAMEVER}.tar.gz
 

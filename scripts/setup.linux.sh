@@ -7,7 +7,7 @@ echo "Running yum update..."
 sudo yum update -y
 exit_on_error "yum update failed"
 
-echo "Installing required packages using port..."
+echo "Installing required packages using yum..."
 packages=$(cat packages/yum-packages.txt)
 sudo yum install -y ${packages}
 exit_on_error "yum install failed"

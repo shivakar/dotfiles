@@ -2,6 +2,9 @@
 
 NAME=git
 VERSION=2.14.1
+if [ ! -z "${1}" ]; then
+    VERSION="${1}"
+fi
 NAMEVER=${NAME}-${VERSION}
 BASEURL=https://github.com/git/git/archive/v${VERSION}.tar.gz
 

@@ -27,6 +27,7 @@ less
 lua
 make
 moreutils
+mosh
 multitail
 nmap
 npm

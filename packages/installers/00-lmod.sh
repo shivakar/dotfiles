@@ -2,6 +2,9 @@
 
 NAME=Lmod
 VERSION=7.6.5
+if [ ! -z "${1}1" ]; then
+    VERSION="${1}"
+fi
 NAMEVER=${NAME}-${VERSION}
 BASEURL=https://github.com/TACC/Lmod/archive/${VERSION}.tar.gz
 

@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 
 NAME=go
-VERSION=1.7.4
+VERSION=1.9
+if [ ! -z "${1}" ]; then
+    VERSION="${1}"
+fi
 NAMEVER=${NAME}-${VERSION}
 BASEURL=https://storage.googleapis.com/golang/go${VERSION}.linux-amd64.tar.gz
 

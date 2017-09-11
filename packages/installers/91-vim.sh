@@ -2,6 +2,9 @@
 
 NAME=vim
 VERSION=8.0.0019
+if [ ! -z "${1}" ]; then
+    VERSION="${1}"
+fi
 NAMEVER=${NAME}-${VERSION}
 BASEURL=https://github.com/vim/vim/archive/v${VERSION}.tar.gz
 
