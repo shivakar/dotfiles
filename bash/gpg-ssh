@@ -2,32 +2,50 @@
 #-------------------------------------------------------------------------------
 # GnuPG, SSH Setup
 #-------------------------------------------------------------------------------
-# Start GPG agent if not already started
-GPG_AGENT_PID=$(pgrep gpg-agent)
-if [[ -z $GPG_AGENT_PID ]]; then
+# reset_gpg_agent starts/restart gpg-agent with SSH support
+# Note: this function kills any existing gpg-agent or ssh-agent instances
+function reset_gpg_agent() {
     pkill ssh-agent
     pkill gpg-agent
+    unset SSH_AGENT_PID
+    unset SSH_AUTH_SOCK
     echo "Starting gpg-agent"
     eval $(gpg-agent --daemon --enable-ssh-support \
         --write-env-file ${HOME}/.gpg-agent-info)
     GPG_AGENT_PID=$(pgrep gpg-agent)
     export GPG_AGENT_PID
-fi
-# Source GPG agent info
-if [ -f ${HOME}/.gpg-agent-info ]; then
-    source ${HOME}/.gpg-agent-info
-    export GPG_AGENT_INFO
-    export SSH_AUTH_SOCK
-fi
-# Set GPG TTY
-GPG_TTY=$(tty)
-export GPG_TTY
+}
 
+# reset_ssh_agent starts/restarts ssh-agent
+# Note: this function kills any existing gpg-agent or ssh-agent instances
 function reset_ssh_agent() {
     pkill ssh-agent
     pkill gpg-agent
     unset GPG_AGENT_INFO
     unset GPG_AGENT_PID
     unset SSH_AUTH_SOCK
-    eval $(ssh-agent)
+    rm -f ~/.gpg-agent-info
+    echo "Starting ssh-agent"
+    # Force identity expiration in 8 hours
+    eval $(ssh-agent -t 8h)
+    SSH_AGENT_PID=$(pgrep ssh-agent)
+    export SSH_AGENT_PID
 }
+
+# Start SSH agent if neither ssh-agent or gpg-agent are running
+SSH_AGENT_PID=$(pgrep ssh-agent)
+GPG_AGENT_PID=$(pgrep gpg-agent)
+if [ -z "$SSH_AGENT_PID" -a -z "$GPG_AGENT_PID" ]; then
+    reset_ssh_agent
+fi
+
+# Source GPG agent info if applicable
+if [ ! -z "$GPG_AGENT_PID" -a -f ${HOME}/.gpg-agent-info ]; then
+    source ${HOME}/.gpg-agent-info
+    export GPG_AGENT_INFO
+    export SSH_AUTH_SOCK
+
+    # Set GPG TTY
+    GPG_TTY=$(tty)
+    export GPG_TTY
+fi
