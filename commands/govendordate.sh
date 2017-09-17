@@ -11,7 +11,7 @@
 
 # get_repo_url returns the git repository path from a golang import path
 function get_repo_url() {
-    repo_url=$(curl --silent https://${1}?go-get=1 | sed -n 's/.*"go-import" content=".* git \(.*\)">.*/\1/p')
+    repo_url=$(curl --location --silent https://${1}?go-get=1 | sed -n 's/.*"go-import" content=".* git \(.*\)">.*/\1/p')
     echo $repo_url
 }
 
