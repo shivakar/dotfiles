@@ -25,9 +25,11 @@ alias p='cd ~/Projects'
 # Directory listing
 #-------------------------------------------------------------------------------
 export LSCOLORS=GxFxCxDxBxegedabagaced
-alias sl=ls
+alias sl='ls'
+alias l='ls'
 alias ls='ls --color=auto'
 alias ll='ls -lthr --color=auto'
+alias la='ls -lthra --color=auto'
 
 #-------------------------------------------------------------------------------
 # Colorize
@@ -60,6 +62,9 @@ alias du='du -h'
 alias psmem='ps aux --sort -rss | head'
 alias pscpu='ps aux --sort -pcpu | head'
 alias path='echo -e ${PATH//:/\\n}'
+alias r='rsync -av --progress'
+alias rz='rsync -avz --progress'
+complete -o nospace -F _rsync r rz
 
 #-------------------------------------------------------------------------------
 # Programming
