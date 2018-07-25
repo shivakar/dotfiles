@@ -15,7 +15,11 @@ function godir() {
     if [ -z $1 ]; then
 	    pushd "${basedir}"
     else
-        newdir=$(find "$GOPATH/src" -type d -path "*${1}*" -print -quit)
+        if which bfind &> /dev/null; then
+            newdir=$(bfind -type d -name ".*${1}.*" -1 "$GOPATH/src")
+        else
+            newdir=$(find "$GOPATH/src" -type d -path "*${1}*" -print -quit)
+        fi
         pushd "${newdir}"
     fi
 }
