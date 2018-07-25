@@ -38,7 +38,7 @@ pv
 pwgen
 py-pygments
 py27-pip
-py27-readline
+py27-gnureadline
 py27-virtualenvwrapper
 python36
 qrencode
