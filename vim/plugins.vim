@@ -40,6 +40,7 @@ Plug 'ap/vim-css-color'
 Plug 'justmao945/vim-clang'
 Plug 'fatih/vim-go'
 Plug 'rhysd/vim-go-impl'
+Plug 'vim-scripts/dbext.vim'
 
 "" Display
 Plug 'vim-airline/vim-airline'
