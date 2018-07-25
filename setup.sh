@@ -35,18 +35,14 @@ fi
 #### bash config
 ln -sf ~/bin/bash/bashrc ~/.bashrc
 ln -sf ~/bin/bash/bash_profile ~/.bash_profile
-
-### ssh config
-[ -L ~/.ssh/config ] && rm ~/.ssh/config
-[ -f ~/.ssh/config ] && \
-    echo "~/.ssh/config exists. Delete and re-run setup." && exit
-mkdir -p ~/.ssh
-ln ~/bin/ssh/config ~/.ssh/config
-chmod 700 ~/.ssh
-chmod 600 ~/.ssh/config
+ln -sf ~/bin/bash/inputrc ~/.inputrc
 
 #### git config
-ln -sf ~/bin/git/gitconfig ~/.gitconfig
+if [ ! -f ~/.gitconfig ]; then
+    cp ~/bin/git/gitconfig ~/.gitconfig
+else
+    echo "~/.gitconfig already exists. Not overwriting."
+fi
 
 #### tmux config
 [ -L ~/.tmux ] && rm ~/.tmux
@@ -69,3 +65,6 @@ mkdir -p ~/.vim/plugins
 vim +PlugInstall +PlugClean +qall
 
 echo "dotfiles setup complete..."
+
+### ssh config
+echo "Remember to setup ~/.ssh/config"
