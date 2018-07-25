@@ -43,6 +43,8 @@
 " \gt           go              Run go test
 " \gc           go              Toggle go coverage
 " <C-t>         go              Return to position after F12 jump
+" ]c                            Jump to next git change
+" [c                            Jump to previous git change
 " ============================================================================
 
 " Don't run in legacy mode
@@ -92,10 +94,12 @@ function! Toggle_sign_column()
 endfunction
 map  <F8> :set number!
     \ <bar> GitGutterToggle
-    \ <bar> :call Toggle_sign_column()<CR>
+    \ <bar> :call Toggle_sign_column()
+    \ <bar> IndentLinesToggle<CR>
 map! <F8> <C-o>:set number!
     \ <bar> GitGutterToggle
-    \ <bar> :call Toggle_sign_column()<CR>
+    \ <bar> :call Toggle_sign_column()
+    \ <bar> IndentLinesToggle<CR>
 "" Highlight cursor line
 hi CursorLine cterm=None ctermbg=233
 set cursorline
