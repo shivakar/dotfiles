@@ -5,8 +5,8 @@
 #-------------------------------------------------------------------------------
 export GOPATH=$HOME/Workspace/go
 export PATH=$GOPATH/bin:$PATH
-[ -d /opt/local/include ] || export CPATH=/opt/local/include:$CPATH
-[ -d /opt/local/lib ] || export LIBRARY_PATH=/opt/local/lib:$LIBRARY_PATH
+[ -d /usr/local/include ] || export CPATH=/usr/local/include:$CPATH
+[ -d /usr/local/lib ] || export LIBRARY_PATH=/usr/local/lib:$LIBRARY_PATH
 # Function to easily jump to anywhere in the GOPATH
 function godir() {
     basedir="$GOPATH/src"

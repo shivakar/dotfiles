@@ -284,7 +284,7 @@ let g:syntastic_auto_loc_list=1
 let g:syntastic_check_on_open=0
 let g:syntastic_check_on_wq=0
 let g:syntastic_aggregate_errors=1
-let g:syntastic_cpp_compiler_options='-Wall -Wextra -Werror -std=c++11 -I/opt/local/include -I/usr/include'
+let g:syntastic_cpp_compiler_options='-Wall -Wextra -Werror -std=c++11 -I/usr/local/include -I/usr/include'
 let g:syntastic_cpp_compiler='clang++'
 let g:syntastic_c_compiler='clang'
 
@@ -310,7 +310,7 @@ let g:clang_format_style='{BasedOnStyle: Google, IndentWidth: 4, TabWidth: 4, St
 let g:clang_use_path=1
 let g:clang_c_completeopt='menuone'
 let g:clang_cpp_completeopt='menuone'
-let g:clang_cpp_options='-std=c++11 -stdlib=libc++ -I/opt/local/include -I/usr/include'
+let g:clang_cpp_options='-std=c++11 -stdlib=libc++ -I/usr/local/include -I/usr/include'
 let g:clang_complete_copen=1
 let g:clang_user_options='|| exit 0'
 let g:clang_use_library=1
