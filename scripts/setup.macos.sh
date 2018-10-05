@@ -1,31 +1,30 @@
 #!/usr/bin/env bash
+return
 
-export PATH=/opt/local/bin:$PATH
+which brew &> /dev/null
+exit_on_error "brew command not found"
 
-which port &> /dev/null
-exit_on_error "port command not found"
-
-echo "Running port selfupdate..."
-sudo port -q selfupdate
-exit_on_error "port selfupdate failed"
+echo "Updating brew and formulae"
+brew update
+exit_on_error "brew update failed"
 
 echo "Upgrading outdated packages..."
-output=$(sudo /opt/local/bin/port -q upgrade outdated)
-retval=$?
-if [[ "${output}" != "Nothing to upgrade." ]] && \
-	[[ "${retval}" != "0" ]]; then
-    echo "ERROR: port upgrade failed"
-    exit 10
-fi
+brew upgrade
+exit_on_error "brew upgrade failed"
 
-echo "Installing required packages using port..."
-packages=$(cat packages/port-packages.txt)
-sudo port -q install ${packages}
-exit_on_error "port install failed"
+echo "Installing required packages using brew..."
+packages=$(cat packages/brew-packages.txt)
+brew install ${packages}
+exit_on_error "brew install failed"
 
-echo "Added macports bash to /etc/shells..."
-grep /opt/local/bin/bash /etc/shells &> /dev/null
+echo "Added homebrew bash to /etc/shells..."
+grep /usr/local/bin/bash /etc/shells &> /dev/null
 if [ "$?" != "0" ]; then
-    echo "/opt/local/bin/bash" | sudo tee -a /etc/shells > /dev/null
-    exit_on_error "could not add macports bash to /etc/shells"
+    echo "/usr/local/bin/bash" | sudo tee -a /etc/shells > /dev/null
+    exit_on_error "adding homebrew bash to /etc/shells failed"
 fi
+
+echo "Installing required GUI packages using brew cask..."
+packages=$(cat packages/brew-cask-packages.txt)
+brew cask install ${packages}
+exit_on_error "brew cask install failed"

@@ -16,8 +16,10 @@
 # PATH
 #-------------------------------------------------------------------------------
 export PATH=/usr/local/bin:$PATH
-export PATH=/opt/local/bin:/opt/local/sbin:/opt/local/libexec/gnubin:$PATH
 export PATH=$HOME/bin/commands:$PATH
+export PATH=/usr/local/texlive/2018/bin/x86_64-darwin:$PATH
+export PATH=/usr/local/opt/coreutils/libexec/gnubin:/usr/local/opt/make/libexec/gnubin:$PATH
+export MANPATH=/usr/local/opt/coreutils/libexec/gnuman:/usr/local/opt/make/libexec/gnuman:$MANPATH
 
 #-------------------------------------------------------------------------------
 # Shell options
@@ -44,7 +46,7 @@ shopt -s progcomp
 #-------------------------------------------------------------------------------
 files="/etc/bashrc $HOME/bin/bash/exports $HOME/bin/bash/aliases
 $HOME/bin/bash/gpg-ssh $HOME/bin/bash/golang
-/opt/local/etc/bash_completion"
+/usr/local/etc/bash_completion"
 
 for file in $files; do
     [ -r "$file" ] && [ -f "$file" ] && source "$file"
