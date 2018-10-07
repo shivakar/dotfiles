@@ -11,6 +11,8 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'zeke/moby'
 Plug 'reedes/vim-lexical'
 Plug 'reedes/vim-wordy'
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-notes'
 
 "" Navigation
 Plug 'scrooloose/nerdtree'
@@ -35,11 +37,11 @@ Plug 'mattn/emmet-vim'
 Plug 'scrooloose/syntastic'
 
 "" Language specific
+Plug 'fatih/vim-go'
+Plug 'rhysd/vim-go-impl'
 Plug 'sheerun/vim-polyglot'
 Plug 'ap/vim-css-color'
 Plug 'justmao945/vim-clang'
-Plug 'fatih/vim-go'
-Plug 'rhysd/vim-go-impl'
 Plug 'vim-scripts/dbext.vim'
 
 "" Display

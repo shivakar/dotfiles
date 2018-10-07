@@ -8,7 +8,7 @@
 " Key           Filetype        Action
 " F1
 " F2                            Toggle Nerdtree
-" F3
+" F3                            Insert time
 " F4
 " F5
 " F6                            Toggle tagbar
@@ -79,6 +79,8 @@ set smartindent
 set backspace=indent,eol,start
 
 " General writing
+nnoremap <F3> "=strftime("%H:%M:%S:    ")<CR>P
+inoremap <F3> <C-R>=strftime("%H:%M:%S:    ")<CR>
 "" Enable mouse support
 set mouse=a
 "" Toggle paste mode
@@ -169,6 +171,11 @@ nmap ll :setlocal spell!<CR>
 " ============================================================================
 nmap ww :NextWordy<CR>
 nmap wn :NoWordy<CR>
+
+" ============================================================================
+" https://github.com/xolox/vim-notes
+" ============================================================================
+let g:notes_directories = ['~/Workspace/go/src/github.com/shivakar/wrkjrnl']
 
 " ============================================================================
 " https://github.com/scrooloose/nerdtree
