@@ -44,7 +44,9 @@ alias fgrep='fgrep --color=auto'
 #-------------------------------------------------------------------------------
 alias now='date'
 alias isodate='date +"%Y-%m-%d"'
-alias today='date +"%m/%d/%Y"'
+alias today='date +"%d/%m/%Y"'
+alias td='vim +Note$(date +"%Y-%m-%d")'
+alias yt='vim +Note$(date +"%Y-%m-%d" --date="1 day ago")'
 
 #-------------------------------------------------------------------------------
 # Networking
