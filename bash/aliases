@@ -16,11 +16,6 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
-# Directory shortcuts
-alias dl='cd ~/Downloads'
-alias dt='cd ~/Desktop'
-alias p='cd ~/Projects'
-
 #-------------------------------------------------------------------------------
 # Directory listing
 #-------------------------------------------------------------------------------
@@ -49,12 +44,6 @@ alias td='vim +Note$(date +"%Y-%m-%d")'
 alias yt='vim +Note$(date +"%Y-%m-%d" --date="1 day ago")'
 
 #-------------------------------------------------------------------------------
-# Networking
-#-------------------------------------------------------------------------------
-alias ns='netstat -tulpn'
-alias wget='wget -c'
-
-#-------------------------------------------------------------------------------
 # Sysadmin
 #-------------------------------------------------------------------------------
 alias top='htop'
@@ -64,9 +53,6 @@ alias du='du -h'
 alias psmem='ps aux --sort -rss | head'
 alias pscpu='ps aux --sort -pcpu | head'
 alias path='echo -e ${PATH//:/\\n}'
-alias r='rsync -av --progress'
-alias rz='rsync -avz --progress'
-complete -o nospace -F _rsync r rz
 
 #-------------------------------------------------------------------------------
 # Programming
@@ -82,15 +68,6 @@ alias ta='tmux a'
 #-------------------------------------------------------------------------------
 alias g='git status'
 alias gls='git log --graph --oneline --decorate'
-alias gca='git commit -a'
-alias gdiff='git diff'
-
-#-------------------------------------------------------------------------------
-# AWS
-#-------------------------------------------------------------------------------
-alias als='aws s3 ls'
-alias alh='aws s3 ls --human-readable'
-alias acp='aws s3 cp'
 
 #-------------------------------------------------------------------------------
 # Docker
@@ -98,5 +75,6 @@ alias acp='aws s3 cp'
 alias d=docker
 complete -F _docker d
 alias dp='docker ps'
+alias dpa='docker ps --all'
 alias di='docker images'
 alias drmi='docker images --quiet --filter=dangling=true | xargs --no-run-if-empty docker rmi'
