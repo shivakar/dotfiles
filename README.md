@@ -5,7 +5,7 @@
 ## Prerequisites
 
 For MacOS:
-* [macports](https://www.macports.org/) is expected to be installed and working correctly.
+* [homebrew](https://brew.sh/) is expected to be installed and working correctly.
 * [bash](https://www.gnu.org/software/bash/) v4.0+
 
 ## Installation
