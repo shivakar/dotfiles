@@ -7,8 +7,9 @@ export GOPATH=$HOME/Workspace/go
 export PATH=$GOPATH/bin:$PATH
 [ -d /usr/local/include ] || export CPATH=/usr/local/include:$CPATH
 [ -d /usr/local/lib ] || export LIBRARY_PATH=/usr/local/lib:$LIBRARY_PATH
+
 # Function to easily jump to anywhere in the GOPATH
-function godir() {
+function _godir() {
     basedir="$GOPATH/src"
     # If not argument is provided, go the $basedir
     # Otherwise, use the argument as a regex to jump to the first matching path
@@ -24,8 +25,24 @@ function godir() {
     fi
 }
 
+# Function to `go get` from URLs copied from browser
+function _gg() {
+    args=' -v -u '
+    imports=($@)
+    for i in "${imports[@]}"; do
+        if [[ "$i" == -* ]]; then
+            args+="$i "
+            continue
+        fi
+        i=${i#http*://}
+        i=${i#git*://}
+        go get $args $i
+    done
+}
+
 #-------------------------------------------------------------------------------
 # Golang aliases
 #-------------------------------------------------------------------------------
-alias gg="go get -v -u"
+alias gg=_gg
+alias godir=_godir
 alias gocover="go test -v -coverprofile=c.out && go tool cover -html=c.out"
