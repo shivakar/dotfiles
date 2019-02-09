@@ -78,3 +78,14 @@ alias dp='docker ps'
 alias dpa='docker ps --all'
 alias di='docker images'
 alias drmi='docker images --quiet --filter=dangling=true | xargs --no-run-if-empty docker rmi'
+
+#-------------------------------------------------------------------------------
+# Kubernetes
+#-------------------------------------------------------------------------------
+alias k=kubectl
+complete -F __start_kubectl k
+alias kx=kubectx
+complete -F _kube_contexts kx
+alias kn=kubens
+complete -F _kube_namespaces kn
+
