@@ -66,8 +66,23 @@ alias ta='tmux a'
 #-------------------------------------------------------------------------------
 # Git
 #-------------------------------------------------------------------------------
+alias amend='git commit --amend'
 alias g='git status'
+alias ga='git add'
+alias gc='git commit'
+alias gcb='git checkout -b'
+alias gco-='git checkout --'
+alias gco='git checkout'
 alias gls='git log --graph --oneline --decorate'
+alias gpp='git pull --prune'
+alias gpurge='git clean -fd'
+alias push='git push'
+__git_complete ga _git_add
+__git_complete gc _git_commit
+__git_complete gco _git_checkout
+__git_complete gco- _git_checkout
+__git_complete gp _git_push
+__git_complete gpp _git_pull
 
 #-------------------------------------------------------------------------------
 # Docker
