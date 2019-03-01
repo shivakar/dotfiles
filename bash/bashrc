@@ -44,9 +44,8 @@ shopt -s progcomp
 #-------------------------------------------------------------------------------
 # Basics
 #-------------------------------------------------------------------------------
-files="/etc/bashrc $HOME/bin/bash/exports $HOME/bin/bash/aliases
-$HOME/bin/bash/gpg-ssh $HOME/bin/bash/golang
-/usr/local/etc/bash_completion"
+files="/etc/bashrc $HOME/bin/bash/exports /usr/local/etc/bash_completion
+$HOME/bin/bash/aliases $HOME/bin/bash/gpg-ssh $HOME/bin/bash/golang"
 
 for file in $files; do
     [ -r "$file" ] && [ -f "$file" ] && source "$file"

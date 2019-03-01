@@ -46,3 +46,4 @@ function _gg() {
 alias gg=_gg
 alias godir=_godir
 alias gocover="go test -v -coverprofile=c.out && go tool cover -html=c.out"
+alias gt='go test -v -race -cover -bench ./...'
