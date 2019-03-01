@@ -4,6 +4,12 @@ return
 which brew &> /dev/null
 exit_on_error "brew command not found"
 
+echo "Installing taps"
+for i in $(cat packages/brew-taps.txt); do
+    brew tap $i
+    exit_on_error "error installing tap $i"
+done
+
 echo "Updating brew and formulae"
 brew update
 exit_on_error "brew update failed"
