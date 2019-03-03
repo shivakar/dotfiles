@@ -1,10 +1,9 @@
 cakebrew
 cgoban
 docker-edge
-dosbox
+dosbox-app
 dropbox
 elmedia-player
-etcher
 firefox
 font-fira-code
 github-beta
