@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-return
 
 which brew &> /dev/null
 exit_on_error "brew command not found"

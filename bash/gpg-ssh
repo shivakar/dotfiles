@@ -33,25 +33,21 @@ function reset_ssh_agent() {
     source ${HOME}/.ssh-agent-info
 }
 
-# Start SSH agent if neither ssh-agent or gpg-agent are running
+# Source ssh-agent or gpg-agent info if they are running
 SSH_AGENT_PID=$(pgrep ssh-agent)
 GPG_AGENT_PID=$(pgrep gpg-agent)
-if [ -z "$SSH_AGENT_PID" -a -z "$GPG_AGENT_PID" ]; then
-    reset_ssh_agent
-else
-    # Source SSH agent info if applicable
-    if [ ! -z "$SSH_AGENT_PID" -a -f ${HOME}/.ssh-agent-info ]; then
-        source ${HOME}/.ssh-agent-info
-    fi
+# Source SSH agent info if applicable
+if [ ! -z "$SSH_AGENT_PID" -a -f ${HOME}/.ssh-agent-info ]; then
+    source ${HOME}/.ssh-agent-info
+fi
 
-    # Source GPG agent info if applicable
-    if [ ! -z "$GPG_AGENT_PID" -a -f ${HOME}/.gpg-agent-info ]; then
-        source ${HOME}/.gpg-agent-info
-        export GPG_AGENT_INFO
-        export SSH_AUTH_SOCK
+# Source GPG agent info if applicable
+if [ ! -z "$GPG_AGENT_PID" -a -f ${HOME}/.gpg-agent-info ]; then
+    source ${HOME}/.gpg-agent-info
+    export GPG_AGENT_INFO
+    export SSH_AUTH_SOCK
 
-        # Set GPG TTY
-        GPG_TTY=$(tty)
-        export GPG_TTY
-    fi
+    # Set GPG TTY
+    GPG_TTY=$(tty)
+    export GPG_TTY
 fi
