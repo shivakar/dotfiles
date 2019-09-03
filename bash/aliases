@@ -62,6 +62,7 @@ alias emacs='emacs --no-window-system'
 alias man='man -a'
 alias t='tmux'
 alias ta='tmux a'
+alias typora='open -a typora'
 
 #-------------------------------------------------------------------------------
 # Git
