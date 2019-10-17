@@ -37,7 +37,7 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-fugitive'
 
 "" Language specific
-Plug 'myitcv/govim'
+Plug 'govim/govim'
 Plug 'sheerun/vim-polyglot'
 Plug 'ap/vim-css-color'
 Plug 'justmao945/vim-clang'
