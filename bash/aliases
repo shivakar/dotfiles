@@ -116,3 +116,10 @@ complete -F __kubectl_get_resource_pod kgp
 complete -F __start_kubectl k
 complete -F _kube_contexts kx
 complete -F _kube_namespaces kn
+
+function _kxn() {
+    fields=(${@//\// })
+    kx ${fields[0]}
+    kn ${fields[1]}
+}
+alias kxn=_kxn
