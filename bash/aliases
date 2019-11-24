@@ -105,6 +105,8 @@ alias drmi='docker images --quiet --filter=dangling=true | xargs --no-run-if-emp
 #-------------------------------------------------------------------------------
 # Kubernetes
 #-------------------------------------------------------------------------------
+source $(kubectl completion bash) 2>/dev/null
+source $(helm completion bash) 2>/dev/null
 alias k=kubectl
 alias kgd='kubectl get deployments'
 alias kgn='kubectl get namespaces'

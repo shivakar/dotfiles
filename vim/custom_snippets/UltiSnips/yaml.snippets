@@ -1,0 +1,316 @@
+priority -100
+
+snippet cfg "ConfigMap" !b
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ${1:name}
+  namespace: ${2:namespace}
+data:
+  ${3:key}: |
+    ${4:values}
+endsnippet
+
+snippet cron "Kubernetes Cronjob" !b
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: ${1:name}
+spec:
+  schedule: "${2:*/1 * * * *}"
+  jobTemplate:
+    spec:
+	  template:
+	    spec:
+		  restartPolicy: OnFailure
+		  containers:
+		  - name: $1
+		    image: ${3:alpine}
+			command:
+			- ${4:command}
+			args:
+			- ${5:args}
+endsnippet
+
+snippet dep "Deployment" !bm
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ${1:name}
+  namespace: ${2:namespace}
+  labels:
+    app: $1
+spec:
+  replicas: ${3:1}
+  selector:
+    matchLabels:
+	 app: $1
+  template:
+    metadata:
+	  annotations:
+	    prometheus.io/port: "${4:80}"
+		prometheus.io/scrape: "${5:false}"
+		prometheus.io/path: ${6:/metrics}
+	  labels:
+	    app: $1
+	spec:
+	  containers:
+	  - name: $1
+	    image: ${7:alpine}
+		imagePullPolicy: ${8:IfNotPresent}
+		command:
+		- ${9:command}
+		args:
+		- ${10:args}
+		ports:
+		- containerPort: "${11:80}"
+		  name: ${12:http}
+		livenessProbe: &probe
+		  initialDelaySeconds: 30
+		  periodSeconds: 10
+		  httpGet:
+		    port: 80
+			path: /ping
+		readinessProbe: *probe
+endsnippet
+
+snippet env "Environment template" !b
+- name: ${1:name}
+  value: ${2:value}
+endsnippet
+
+snippet ing "Ingress" !b
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ${1:name}
+  namespace: ${2:namespace}
+spec:
+  backend:
+    serviceName: $1
+	servciePort: ${3:80}
+endsnippet
+
+snippet ingt "Ingress with traefik" !b
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+endsnippet
+
+snippet f5ing "Ingress with F5 integration" !b
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ${1:name}
+  annotations:
+    kubernetes.io/ingress.class: f5
+	virtual-server.f5.com/ip: ${2:127.0.0.1}
+spec:
+  backend:
+    serviceName: ${3:svc-name}
+	servicePort: ${4:80}
+endsnippet
+
+snippet ns "Namespace" !b
+apiVersion: v1
+kind: Namespacee
+metadata:
+  name: ${1:name}
+endsnippet
+
+snippet nsperms
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: ${1:namespace}-all
+  namespace: $1
+rules:
+- apiGroups: ["*"]
+  resources: ["*"]
+  verbs: ["*"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: $1-team
+  namespace: $1
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: $1-all
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: Group
+  name: $1
+endsnippet
+
+snippet probe "Liveness/Readiness Probes" !b
+livenessProbe: &probe
+  initialDelaySeconds: ${1:30}
+  periodSeconds: ${2:10}
+  httpGet:
+    port: ${3:80}
+	path: ${4:/ping}
+readinessProbe: *probe
+endsnippet
+
+snippet prom "Prometheus annotations" !b
+prometheus.io/scrape: "${1:true}"
+prometheus.io/port: "${2:80}"
+prometheus.io/path: "${3:/metrics}"
+endsnippet
+
+snippet pv "PersistentVolume" !b
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: ${1:name}
+spec:
+  capacity:
+    storage: ${2:5Gi}
+  accessModes:
+  - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Recycle
+  storageClassName: ${3:pure-file}
+endsnippet
+
+snippet pvc "PersistentVolumeClaim" !b
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ${1:name}
+spec:
+  accessModes:
+  - ReadWriteOnce
+  volumeMode: Filesystem
+  resources:
+    requests:
+	  storage: ${2:8Gi}
+  storageClassName: "${3:pure-file}"
+endsnippet
+
+snippet rb "RoleBinding" !b
+apiVersion: rbac.authorizationi.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: ${1:name}
+  namespace: ${2:namespace}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: $1
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: ${3:username}
+endsnippet
+
+snippet role "Role" !b
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: ${1:name}
+  namespace: ${2:default}
+rules:
+- apiGroups: [""] # "" indicates the core API group
+  resources: ["pods"]
+  verbs: ["get", "watch", "list"]
+endsnippet
+
+snippet sa "ServiceAccount" !b
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: ${1:saccount}
+endsnippet
+
+snippet sec "Secret" !b
+apiVersion: v1
+kind: Secret
+metadata:
+  name: ${1:name}
+type: Opaque
+data:
+  ${2:key}: ${3:value}
+endsnippet
+
+snippet ss "StatefulSet" !b
+apiVersion: v1
+kind: Service
+metadata:
+  name: ${1:headless}
+spec:
+  ports:
+  - port: ${2:80}
+    name: ${3:http}
+  clusterIP: None
+  selector:
+    app: $1
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: $1
+spec:
+  selector:
+    matchLabels:
+	  app: $1
+  serviceName: $1
+  replicas: ${4:5}
+  volumeClaimTemplates:
+  - metadata:
+      name: ${5:data}
+	spec:
+	  accessModes: [ "ReadWriteOnce" ]
+	  storageClassName: "${6:pure-file}"
+	  resources:
+	    requests:
+		  storage: ${7:1Ti}
+  template:
+    metadata:
+	  labels:
+	    app: $1
+	spec:
+	  terminationGracePeriodSeconds: 120
+	  containers:
+	  - name: $1
+	    image: ${8:image}
+		ports:
+		- containerPort: $2
+		  name: $3
+		command:
+		- ${9:command}
+		args:
+		- ${10:args}
+		volumeMounts:
+		- name: $5
+		  mountPath: ${11:/opt}
+		livenessProbe: &probe
+		  initialDelaySeconds: 30
+		  periodSeconds: 10
+		  successThreshold: 1
+		  failureThreshold: 3
+		  timeoutSeconds: 3
+		  httpGet:
+		    scheme: HTTP
+			port: ${12:80}
+			path: ${13:/ping}
+		readinessProbe: *probe
+endsnippet
+
+snippet svc "Service" !b
+apiVersion: v1
+kind: Service
+metadata:
+  name: ${1:svc-name}
+  labels:
+	app: ${2:app}
+spec:
+  ports:
+  - port: ${4:80}
+  -	targetPort: ${5:80}
+  selector:
+    app: $3
+  type: ${6:LoadBalancer}
+  loadBalancerIP:  ${7:127.0.0.1}
+endsnippet
