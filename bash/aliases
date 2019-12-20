@@ -67,30 +67,9 @@ alias typora='open -a typora'
 #-------------------------------------------------------------------------------
 # Git
 #-------------------------------------------------------------------------------
-alias amend='git commit --amend'
 alias g='git status'
-alias ga='git add'
-alias gb='git branch -a'
-alias gc='git commit'
-alias gcb='git checkout -b'
-alias gco-='git checkout --'
-alias gco='git checkout'
 alias gd='git diff'
-alias gl='git log -10'
-alias gls='git log --graph --oneline --decorate'
 alias gpp='git pull --prune'
-alias gpurge='git clean -fd'
-alias push='git push'
-__git_complete ga _git_add
-__git_complete gb _git_branch
-__git_complete gc _git_commit
-__git_complete gco _git_checkout
-__git_complete gco- _git_checkout
-__git_complete gd _git_diff
-__git_complete gl _git_log
-__git_complete gls _git_log
-__git_complete gpp _git_pull
-__git_complete push _git_push
 
 #-------------------------------------------------------------------------------
 # Docker
@@ -105,8 +84,6 @@ alias drmi='docker images --quiet --filter=dangling=true | xargs --no-run-if-emp
 #-------------------------------------------------------------------------------
 # Kubernetes
 #-------------------------------------------------------------------------------
-source $(kubectl completion bash) 2>/dev/null
-source $(helm completion bash) 2>/dev/null
 alias k=kubectl
 alias kgd='kubectl get deployments'
 alias kgn='kubectl get namespaces'
