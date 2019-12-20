@@ -15,11 +15,12 @@
 #-------------------------------------------------------------------------------
 # PATH
 #-------------------------------------------------------------------------------
-export PATH=/usr/local/bin:$PATH
+export PATH=/usr/local/bin:/home/linuxbrew/.linuxbrew/bin:$PATH
 export PATH=$HOME/bin/commands:$PATH
 export PATH=/usr/local/texlive/2018/bin/x86_64-darwin:$PATH
 export PATH=/usr/local/opt/coreutils/libexec/gnubin:/usr/local/opt/make/libexec/gnubin:$PATH
 export MANPATH=/usr/local/opt/coreutils/libexec/gnuman:/usr/local/opt/make/libexec/gnuman:$MANPATH
+export PKG_CONFIG_PATH=/usr/share/pkgconfig:$PKG_CONFIG_PATH
 
 #-------------------------------------------------------------------------------
 # Shell options
