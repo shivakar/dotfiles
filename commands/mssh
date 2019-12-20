@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+if [ -z $TMUX ]; then
+    echo "Not running in tmux. Exiting..."
+    exit 0
+fi
+
+hosts=($@)
+for (( i=0; i < ${#hosts[@]}; i++ )); do
+    tmux split-window -v "ssh ${hosts[$i]}"
+done
+tmux kill-pane -t 0
