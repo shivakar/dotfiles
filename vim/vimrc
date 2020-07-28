@@ -175,7 +175,7 @@ nmap wn :NoWordy<CR>
 " ============================================================================
 " https://github.com/xolox/vim-notes
 " ============================================================================
-let g:notes_directories = ['~/Workspace/go/src/github.com/shivakar/wrkjrnl']
+let g:notes_directories = ['~/go/src/github.com/shivakar/wrkjrnl']
 
 " ============================================================================
 " https://github.com/scrooloose/nerdtree

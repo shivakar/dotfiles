@@ -3,7 +3,7 @@
 #-------------------------------------------------------------------------------
 # Golang configuration
 #-------------------------------------------------------------------------------
-export GOPATH=$HOME/Workspace/go
+export GOPATH=$HOME/go
 export PATH=$GOPATH/bin:$PATH
 [ -d /usr/local/include ] || export CPATH=/usr/local/include:$CPATH
 [ -d /usr/local/lib ] || export LIBRARY_PATH=/usr/local/lib:$LIBRARY_PATH

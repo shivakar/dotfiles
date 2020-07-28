@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 ml go
-export GOPATH=$HOME/Workspace/go
+export GOPATH=$HOME/go
 
 go get -u \
 	"github.com/GoASTScanner/gas" \
