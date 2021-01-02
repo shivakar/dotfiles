@@ -1,4 +1,4 @@
-" Initialize vim-plug
+"Initialize vim-plug
 call plug#begin('~/.vim/plugins')
 
 " Plugins
@@ -21,7 +21,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 
 "" Programming
 Plug 'SirVer/ultisnips'
-Plug 'Valloric/YouCompleteMe'
+Plug 'ycm-core/YouCompleteMe'
 Plug 'Yggdroot/indentLine'
 Plug 'airblade/vim-gitgutter'
 Plug 'ervandew/supertab'
@@ -34,6 +34,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/syntastic'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-fugitive'
+Plug 'rust-lang/rust.vim'
 
 "" Language specific
 Plug 'fatih/vim-go'
