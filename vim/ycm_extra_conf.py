@@ -190,7 +190,7 @@ def FlagsForFile(filename):
 
         if build_include_flags:
             final_flags = final_flags + build_include_flags
-        print "Flags == ", final_flags
+        print("Flags == ", final_flags)
     return {
             'flags': final_flags,
             'do_cache': True
