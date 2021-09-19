@@ -7,24 +7,19 @@
 # Modified Dates:
 #   v1.1    : 2017-08-25. Various bugfixes.
 #   v1.2    : 2017-08-26. Disable load on non interactive sessions
-#
 
 # Don't load this file if this is not an interactive session
 [ -z "$PS1" ] && return
 
-#-------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------
 # PATH
-#-------------------------------------------------------------------------------
-export PATH=/usr/local/bin:/home/linuxbrew/.linuxbrew/bin:$PATH
+# -------------------------------------------------------------------------------
+export PATH=/opt/homebrew/bin:/home/linuxbrew/.linuxbrew/bin:$PATH
 export PATH=$HOME/bin/commands:$PATH
-export PATH=/usr/local/texlive/2018/bin/x86_64-darwin:$PATH
-export PATH=/usr/local/opt/coreutils/libexec/gnubin:/usr/local/opt/make/libexec/gnubin:$PATH
-export MANPATH=/usr/local/opt/coreutils/libexec/gnuman:/usr/local/opt/make/libexec/gnuman:$MANPATH
-export PKG_CONFIG_PATH=/usr/share/pkgconfig:$PKG_CONFIG_PATH
 
-#-------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------
 # Shell options
-#-------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------
 # Enable autocomplete
 set autolist
 # Disable terminal audio-visual bell
@@ -45,8 +40,8 @@ shopt -s progcomp
 #-------------------------------------------------------------------------------
 # Basics
 #-------------------------------------------------------------------------------
-files="/etc/bashrc $HOME/bin/bash/exports /usr/local/etc/bash_completion
-$HOME/bin/bash/aliases $HOME/bin/bash/gpg-ssh $HOME/bin/bash/golang"
+files="/etc/bashrc $HOME/bin/bash/exports /opt/homebrew/etc/profile.d/bash_completion.sh
+$HOME/bin/bash/aliases $HOME/bin/bash/gpg-ssh $HOME/bin/bash/golang $HOME/bin/bash/brew"
 
 for file in $files; do
     [ -r "$file" ] && [ -f "$file" ] && source "$file"

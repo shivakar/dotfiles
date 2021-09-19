@@ -107,6 +107,7 @@ hi CursorLine cterm=None ctermbg=233
 set cursorline
 
 " Search
+set rtp+=/opt/homebrew/opt/fzf
 "" map space to clear search highlighting and close scratch windows
 nnoremap <silent> <Space> :silent noh<Bar>:pc<Bar>echo<CR>
 set hlsearch 			" Highlight search term
@@ -284,7 +285,7 @@ au FileType html,css imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 " ============================================================================
 " https://github.com/scrooloose/syntastic
 " ============================================================================
-let g:syntastic_go_checkers=['go', 'golint', 'govet', 'errcheck']
+let g:syntastic_go_checkers=['go', 'golint', 'govet', 'errcheck', 'golangci-lint']
 let g:syntastic_mode_map={ 'mode': 'active' }
 let g:syntastic_always_populate_loc_list=1
 let g:syntastic_quiet_messages = { "type": "style"  }
@@ -292,7 +293,7 @@ let g:syntastic_auto_loc_list=1
 let g:syntastic_check_on_open=0
 let g:syntastic_check_on_wq=0
 let g:syntastic_aggregate_errors=1
-let g:syntastic_cpp_compiler_options='-Wall -Wextra -Werror -std=c++11 -I/usr/local/include -I/usr/include'
+let g:syntastic_cpp_compiler_options='-Wall -Wextra -Werror -std=c++11 -I/opt/homebrew/include -I/usr/include'
 let g:syntastic_cpp_compiler='clang++'
 let g:syntastic_c_compiler='clang'
 
@@ -318,7 +319,7 @@ let g:clang_format_style='{BasedOnStyle: Google, IndentWidth: 4, TabWidth: 4, St
 let g:clang_use_path=1
 let g:clang_c_completeopt='menuone'
 let g:clang_cpp_completeopt='menuone'
-let g:clang_cpp_options='-std=c++11 -stdlib=libc++ -I/usr/local/include -I/usr/include'
+let g:clang_cpp_options='-std=c++11 -stdlib=libc++ -I/opt/homebrew/include -I/usr/include'
 let g:clang_complete_copen=1
 let g:clang_user_options='|| exit 0'
 let g:clang_use_library=1
@@ -344,6 +345,9 @@ let g:go_fmt_autosave=1
 let g:go_auto_type_info=1
 let g:go_list_type="quickfix"
 let g:go_addtags_transform="snakecase"
+let g:go_metalinter_autosave = 1
+let g:go_metalinter_command="golangci-lint"
+let g:go_metalinter_autosave_enabled=["deadcode", "errcheck", "gosimple", "govet", "ineffassign", "staticcheck", "structcheck", "typecheck", "unused", "varcheck"]
 au FileType go nmap <leader>gd :GoDeclsDir<CR>
 au Filetype go nmap <leader>ga <Plug>(go-alternate-edit)
 au Filetype go nmap <leader>gah <Plug>(go-alternate-split)

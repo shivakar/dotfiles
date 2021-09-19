@@ -3,40 +3,52 @@
 #-------------------------------------------------------------------------------
 # Golang configuration
 #-------------------------------------------------------------------------------
-export GOPATH=$HOME/go
-export PATH=$GOPATH/bin:$PATH
-[ -d /usr/local/include ] || export CPATH=/usr/local/include:$CPATH
-[ -d /usr/local/lib ] || export LIBRARY_PATH=/usr/local/lib:$LIBRARY_PATH
-
 # Function to easily jump to anywhere in the GOPATH
 function _godir() {
-    basedir="$GOPATH/src"
+    basedir="$HOME/go/src"
     # If not argument is provided, go the $basedir
     # Otherwise, use the argument as a regex to jump to the first matching path
     if [ -z $1 ]; then
 	    pushd "${basedir}"
     else
         if which bfind &> /dev/null; then
-            newdir=$(bfind -type d -name ".*${1}.*" -1 "$GOPATH/src")
+            newdir=$(bfind -type d -name ".*${1}.*" -1 "$basedir")
         else
-            newdir=$(find "$GOPATH/src" -type d -path "*${1}*" -print -quit)
+            newdir=$(find "$basedir" -type d -path "*${1}*" -print -quit)
         fi
         pushd "${newdir}"
     fi
 }
 
-# Function to `go get` from URLs copied from browser
-function _gg() {
-    args=' -v -u '
+# Function to `git clone` to GOPATH from URLs copied from browser
+function _ggc() {
     imports=($@)
     for i in "${imports[@]}"; do
-        if [[ "$i" == -* ]]; then
-            args+="$i "
-            continue
-        fi
         i=${i#http*://}
         i=${i#git*://}
-        go get $args $i
+        repo=$HOME/go/src/$i
+        if [ -d $repo ]; then
+            pushd $repo
+            git pull --prune
+            popd
+            continue
+        fi
+        parent=$(dirname $repo)
+        mkdir -p $parent
+        pushd $parent
+        echo "Cloning https://$i"
+        git clone https://$i $(basename $i)
+        popd
+    done
+}
+
+# Function to `go get` from URLs copied from browser
+function _gg() {
+    imports=($@)
+    for i in "${imports[@]}"; do
+        i=${i#http*://}
+        i=${i#git*://}
+        go get $i
     done
 }
 
@@ -44,6 +56,7 @@ function _gg() {
 # Golang aliases
 #-------------------------------------------------------------------------------
 alias gg=_gg
+alias ggc=_ggc
 alias godir=_godir
 alias gocover="go test -v -coverprofile=c.out && go tool cover -html=c.out"
 alias gt='go test -v -race -cover -bench ./...'

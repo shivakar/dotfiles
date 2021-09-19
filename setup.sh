@@ -26,7 +26,7 @@ fi
 echo "Starting setup..."
 source scripts/functions.sh
 if [ "$(uname)" == "Darwin" ]; then
-    source scripts/setup.macos.sh
+    echo "source scripts/setup.macos.sh"
 elif [ "$(uname)" == "Linux" ]; then
     source scripts/setup.linux.sh
 fi
