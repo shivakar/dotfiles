@@ -11,23 +11,16 @@
 " F3                            Insert time
 " F4
 " F5
-" F6                            Toggle tagbar
-" F7				            Toggle paste mode
-" F8				            Toggle line numbers
+" F6                            
+" F7				Toggle paste mode
+" F8				Toggle line numbers
 " F9
 " F10
 " F11
 " F12           go              Go to definition
-" space 			            Clear search highlighting
-" <S-tab>			            Cycle through buffers
-" <C-x><Up,Down,Left,Right>	    Move between splits
-" mm                            Toggle bookmark
-" mn                            Jump to next bookmark
-" mp                            Jump to previous bookmark
-" mx                            Clear all bookmarks
-" ll                            Toggle spell check
-" ww                            Next Wordy
-" wn                            Disable Wordy
+" space 			Clear search highlighting
+" <S-tab>			Cycle through buffers
+" <C-x><Up,Down,Left,Right>	Move between splits
 " \cc                           Comment using nerdcommenter
 " \cu                           Uncomment using nerdcommenter
 " \c<space>                     Toggle comment state
@@ -107,7 +100,7 @@ hi CursorLine cterm=None ctermbg=233
 set cursorline
 
 " Search
-set rtp+=/opt/homebrew/opt/fzf
+set rtp+=/opt/homebrew/bin/fzf
 "" map space to clear search highlighting and close scratch windows
 nnoremap <silent> <Space> :silent noh<Bar>:pc<Bar>echo<CR>
 set hlsearch 			" Highlight search term
@@ -136,49 +129,6 @@ map! <C-x><Right> <C-o><C-w>l
 " ============================================================================
 
 " ============================================================================
-" https://github.com/MattesGroeger/vim-bookmarks
-" ============================================================================
-highlight BookmarkSign ctermbg=NONE ctermfg=160
-highlight BookmarkLine ctermbg=1 ctermfg=NONE
-let g:bookmark_sign='♥'
-let g:bookmark_highlight_lines=1
-let g:bookmark_no_default_key_mappings=1
-let g:bookmark_save_per_working_dir=0
-let g:bookmark_auto_save=1
-nmap mm :BookmarkToggle<CR>
-nmap mn :BookmarkNext<CR>
-nmap mp :BookmarkPrev<CR>
-nmap mx :BookmarkClearAll<CR>
-
-" ============================================================================
-" https://github.com/ntpeters/vim-better-whitespace
-" ============================================================================
-
-" ============================================================================
-" https://github.com/zeke/moby
-" ============================================================================
-
-" ============================================================================
-" https://github.com/reedes/vim-lexical
-" ============================================================================
-let g:lexical#spelllang=['en_us',]
-let g:lexical#thesaurus=['~/.vim/plugins/moby/words.txt',]
-let g:lexical#dictionary=['/usr/share/dict/words',]
-let g:lexical#spellfile=['~/.vim/spell/en.utf-8.add',]
-nmap ll :setlocal spell!<CR>
-
-" ============================================================================
-" https://github.com/reedes/vim-wordy
-" ============================================================================
-nmap ww :NextWordy<CR>
-nmap wn :NoWordy<CR>
-
-" ============================================================================
-" https://github.com/xolox/vim-notes
-" ============================================================================
-let g:notes_directories = ['~/go/src/github.com/shivakar/wrkjrnl']
-
-" ============================================================================
 " https://github.com/scrooloose/nerdtree
 " ============================================================================
 map  <F2> :NERDTreeToggle<CR>
@@ -192,11 +142,12 @@ let g:EasyMotion_smartcase=1        " Case insensitive search
 map / <Plug>(easymotion-sn)
 
 " ============================================================================
-" https://github.com/ctrlpvim/ctrlp.vim
+" https://github.com/SirVer/Ultisnips
 " ============================================================================
-let g:ctrlp_map='<c-p>'
-let g:ctrlp_cmd='CtrlP'
-let g:ctrlp_working_path_mode='ra'
+set runtimepath+=~/.vim/custom_snippets/
+let g:UltiSnipsExpandTrigger='<tab>'
+let g:UltiSnipsJumpForwardTrigger='<tab>'
+let g:UltiSnipsJumpBackwardTrigger='<s-tab>'
 
 " ============================================================================
 " https://github.com/valloric/YouCompleteMe
@@ -210,18 +161,6 @@ let g:ycm_key_list_previous_completion=['<c-p>', '<Up>']
 " https://github.com/ervandew/supertab
 " ============================================================================
 let g:SuperTabDefaultCompletionType='<c-n>'
-
-" ============================================================================
-" https://github.com/SirVer/Ultisnips
-" ============================================================================
-set runtimepath+=~/.vim/custom_snippets/
-let g:UltiSnipsExpandTrigger='<tab>'
-let g:UltiSnipsJumpForwardTrigger='<tab>'
-let g:UltiSnipsJumpBackwardTrigger='<s-tab>'
-
-" ============================================================================
-" https://github.com/shivakar/vim-snippets
-" ============================================================================
 
 " ============================================================================
 " https://github.com/Yggdroot/indentLine
@@ -241,25 +180,9 @@ let g:gitgutter_eager=0
 highlight clear SignColumn
 
 " ============================================================================
-" https://github.com/tpope/vim-fugitive
-" ============================================================================
-
-" ============================================================================
 " https://github.com/scrooloose/nerdcommenter
 " ============================================================================
 let g:NERDSpaceDelims=1
-
-" ============================================================================
-" https://github.com/terryma/vim-multiple-cursors
-" ============================================================================
-
-" ============================================================================
-" https://github.com/godlygeek/tabular
-" ============================================================================
-
-" ============================================================================
-" https://github.com/vim-scripts/gnuchangelog
-" ============================================================================
 
 " ============================================================================
 " https://github.com/jiangmiao/auto-pairs
@@ -267,20 +190,6 @@ let g:NERDSpaceDelims=1
 let g:AutoPairsShortcutFastWrap='<c-e>'
 let g:AutoPairsMapCR=0
 imap <silent><CR> <CR><Plug>AutoPairsReturn
-
-" ============================================================================
-" https://github.com/majutsushi/tagbar
-" ============================================================================
-map  <F6> :TagbarToggle<CR>
-map! <F6> <C-o>:TagbarToggle<CR>
-
-" ============================================================================
-" https://github.com/mattn/emmet-vim
-" ============================================================================
-let g:user_emmet_install_global=0
-"" Only enabling emmet for HTML and CSS related filetypes
-au FileType html,css EmmetInstall
-au FileType html,css imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 
 " ============================================================================
 " https://github.com/scrooloose/syntastic
@@ -308,22 +217,6 @@ au FileType proto
     \ setlocal foldmethod=marker |
     \ setlocal foldmarker={,}    |
     \ setlocal foldlevel=0
-
-" ============================================================================
-" https://github.com/justmao945/vim-clang
-" ============================================================================
-let g:clang_auto=0
-let g:clang_cpp_options='-std=c++11'
-let g:clang_format_auto=1
-let g:clang_format_style='{BasedOnStyle: Google, IndentWidth: 4, TabWidth: 4, Standard: Cpp11}'
-let g:clang_use_path=1
-let g:clang_c_completeopt='menuone'
-let g:clang_cpp_completeopt='menuone'
-let g:clang_cpp_options='-std=c++11 -stdlib=libc++ -I/opt/homebrew/include -I/usr/include'
-let g:clang_complete_copen=1
-let g:clang_user_options='|| exit 0'
-let g:clang_use_library=1
-let b:clang_user_options='-std=c++11'
 
 " ============================================================================
 " https://github.com/fatih/vim-go

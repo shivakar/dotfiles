@@ -1,0 +1,34 @@
+export PATH=$HOME/go/bin:$PATH
+
+alias gmt='go mod tidy'
+alias gmv='go mod vendor'
+
+# Function to `go get` from URLs copied from browser
+function _ggc() {
+    imports=($@)
+    for i in "${imports[@]}"; do
+        i=${i#http*://}
+        i=${i#git*://}
+        GO111MODULE=off go get -u $i
+    done
+}
+alias gg=_ggc
+
+# Function to easily jump to anywhere in the GOPATH
+function _godir() {
+    basedir="$HOME/go/src"
+    # If not argument is provided, go the $basedir
+    # Otherwise, use the argument as a regex to jump to the first matching path
+    if [ -z $1 ]; then
+        pushd "${basedir}"
+    else
+        if which bfind &> /dev/null; then
+            newdir=$(bfind -type d -name ".*${1}.*" -1 "$basedir")
+        else
+            newdir=$(find "$basedir" -type d -path "*${1}*" -print -quit)
+        fi
+        pushd "${newdir}"
+    fi
+}
+alias godir=_godir
+

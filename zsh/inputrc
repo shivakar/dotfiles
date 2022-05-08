@@ -1,0 +1,12 @@
+# Case insensitive filename autocomplete
+set completion-ignore-case on
+
+# Autocomplete from shell history using up and down arrows
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+
+# Shell navigate words using Alt-arrows
+"\e[1;5C": forward-word
+"\e[1;5D": backward-word
+
+set skip-completed-text on

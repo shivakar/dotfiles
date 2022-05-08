@@ -1,0 +1,26 @@
+#-------------------------------------------------------------------------------
+# History options
+#-------------------------------------------------------------------------------
+# Ignore duplicate entries or entries starting with spaces in history
+export HISTCONTROL=ignoreboth
+export HISTSIZE=100000
+export HISTFILESIZE="${HISTSIZE}"
+export HISTIGNORE='&:ls:exit'
+
+#-------------------------------------------------------------------------------
+# Environment variables
+#-------------------------------------------------------------------------------
+export EMAIL='Shivakar Vulli <svulli@shivakar.com>'
+export EDITOR=vim
+export VISUAL=vim
+export GIT_EDITOR=vim
+export LANG='en_US.UTF-8'
+export LC_ALL='en_US.UTF-8'
+
+#-------------------------------------------------------------------------------
+# Programming and development
+#-------------------------------------------------------------------------------
+# Highlight section titles in man pages
+export LESS_TERMCAP_md=$(tput bold; tput setaf 6) # cyan
+# Don't clear the screen after quitting a man page
+export MANPAGER='less -X'

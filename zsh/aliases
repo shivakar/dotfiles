@@ -1,0 +1,77 @@
+#-------------------------------------------------------------------------------
+# Protect against accidents
+#-------------------------------------------------------------------------------
+type trash &> /dev/null && alias rm='trash'
+
+#-------------------------------------------------------------------------------
+# Directory creation and navigation
+#-------------------------------------------------------------------------------
+alias mkdir='mkdir -pv'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
+#-------------------------------------------------------------------------------
+# Colorize
+#-------------------------------------------------------------------------------
+alias diff='colordiff'
+alias ls='exa'
+alias ll='exa --long --git --header --classify'
+alias lt='exa --tree'
+alias llt='exa --long --git --header --classify --tree'
+
+#-------------------------------------------------------------------------------
+# Sysadmin
+#-------------------------------------------------------------------------------
+alias top='htop'
+alias free='free -g -l -t'
+alias df='df -h'
+alias du='du -h'
+alias psmem='ps aux --sort -rss | head'
+alias pscpu='ps aux --sort -pcpu | head'
+alias path='echo -e ${PATH//:/\\n}'
+alias ip='ipconfig getifaddr en0'
+
+#-------------------------------------------------------------------------------
+# Programming
+#-------------------------------------------------------------------------------
+alias vi='vim'
+alias man='man -a'
+alias t='tmux'
+alias ta='tmux a'
+alias typora='open -a typora'
+type code-insiders &>/dev/null && alias code=code-insiders
+
+#-------------------------------------------------------------------------------
+# Git
+#-------------------------------------------------------------------------------
+alias g='git status'
+alias gpp='git pull --prune'
+
+#-------------------------------------------------------------------------------
+# Docker
+#-------------------------------------------------------------------------------
+alias drmi='docker images --quiet --filter=dangling=true | xargs --no-run-if-empty docker rmi'
+
+#-------------------------------------------------------------------------------
+# Kubernetes
+#-------------------------------------------------------------------------------
+alias k=kubectl
+alias kgd='kubectl get deployments'
+alias kgn='kubectl get namespaces'
+alias kgp='kubectl get pods'
+alias kgs='kubectl get services'
+alias kn=kubens
+alias kx=kubectx
+
+#-------------------------------------------------------------------------------
+# Utilities
+#-------------------------------------------------------------------------------
+function lcd() {
+    which bfind &> /dev/null || exit
+    d=$(bfind -type d -1 -name "$@" $(pwd))
+    if [ -n "$d" ]; then
+        cd "$d"
+    fi
+}
+
