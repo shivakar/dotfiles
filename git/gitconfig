@@ -1,6 +1,8 @@
 [user]
     name = Shivakar Vulli
     email = svulli@shivakar.com
+[core]
+    pager = less -F -X
 [color]
     ui = true
 [color "branch"]
@@ -10,7 +12,7 @@
 [color "diff"]
     meta = yellow bold
     frag = magenta bold
-    old = red bold
+    old = red
     new = green bold
     whitespace = red reverse
 [color "status"]
@@ -22,5 +24,17 @@
     autosetuprebase = always
 [push]
     default = simple
+    followTags = true
+[diff]
+    tool = vimdiff
+[filter "lfs"]
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+[init]
+    defaultBranch = main
 [url "git@github.com:shivakar"]
     insteadof = https://github.com/shivakar
+[alias]
+    clean-merged-branches = !git branch -vv | grep 'origin/.*: gone]' | awk '{print $1}' | xargs git branch -d
