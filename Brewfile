@@ -102,8 +102,12 @@ brew "lua"
 brew "make"
 # Mac App Store command-line interface
 brew "mas"
+# Fly through your shell history
+brew "mcfly"
 # Open source relational database management system
 brew "mysql"
+# Ambitious Vim-fork focused on extensibility and agility
+brew "neovim"
 # Port scanning utility for large networks
 brew "nmap"
 # Platform built on V8 to build network applications
@@ -170,8 +174,6 @@ brew "tree"
 brew "uncrustify"
 # Extraction utility for .zip compressed archives
 brew "unzip"
-# Vi 'workalike' with many additional features
-brew "vim"
 # Executes a program periodically, showing output fullscreen
 brew "watch"
 # Internet file retriever
