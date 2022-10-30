@@ -42,42 +42,12 @@ alias vi='vim'
 alias man='man -a'
 alias t='tmux'
 alias ta='tmux a'
-alias typora='open -a typora'
 
 #-------------------------------------------------------------------------------
 # Git
 #-------------------------------------------------------------------------------
 alias g='git status'
 alias gpp='git pull --prune'
-
-#-------------------------------------------------------------------------------
-# Docker
-#-------------------------------------------------------------------------------
-complete -F _docker d
-alias drmi='docker images --quiet --filter=dangling=true | xargs --no-run-if-empty docker rmi'
-
-#-------------------------------------------------------------------------------
-# Kubernetes
-#-------------------------------------------------------------------------------
-alias k=kubectl
-alias kgd='kubectl get deployments'
-alias kgn='kubectl get namespaces'
-alias kgp='kubectl get pods'
-alias kgs='kubectl get services'
-alias kn=kubens
-alias kx=kubectx
-complete -F __kubectl_get_resource_pod kgp
-complete -F __start_kubectl k
-complete -F _kube_contexts kx
-complete -F _kube_namespaces kn
-
-function _kxn() {
-    fields=(${@//\// })
-    kx ${fields[0]}
-    kn ${fields[1]}
-}
-alias kxn=_kxn
-
 
 #-------------------------------------------------------------------------------
 # Utilities

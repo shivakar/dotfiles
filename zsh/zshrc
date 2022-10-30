@@ -32,6 +32,7 @@ plugins=(
 	docker
 	zsh-autosuggestions
 	zsh-syntax-highlighting
+    gpg-agent
 )
 source $ZSH/oh-my-zsh.sh
 source $HOME/bin/zsh/aliases
