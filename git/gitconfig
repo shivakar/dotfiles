@@ -1,10 +1,43 @@
 [user]
     name = Shivakar Vulli
     email = svulli@shivakar.com
+    signingkey = 3E9AB15A3BB18E4C!
+[github]
+    user = shivakar
 [core]
     pager = less -F -X
+    quotepath = on
+    commitGraph = true
 [color]
     ui = true
+[commit]
+    verbose = true
+    gpgsign = true
+[branch]
+    autosetupmerge = true
+    autosetuprebase = always
+[push]
+    default = simple
+    followTags = true
+[pull]
+    rebase = true
+[fetch]
+    prune = true
+    writeCommitGraph = true
+[diff]
+    algorithm = patience
+    compactionheuristic = true
+    colorMooved = default
+    tool = vimdiff
+[help]
+    autocorrect = 1
+[filter "lfs"]
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+[init]
+    defaultBranch = main
 [color "branch"]
     current = yellow bold
     local = green bold
@@ -19,22 +52,7 @@
     added = green bold
     changed = yellow bold
     untracked = red bold
-[branch]
-    autosetupmerge = true
-    autosetuprebase = always
-[push]
-    default = simple
-    followTags = true
-[diff]
-    tool = vimdiff
-[filter "lfs"]
-    clean = git-lfs clean -- %f
-    smudge = git-lfs smudge -- %f
-    process = git-lfs filter-process
-    required = true
-[init]
-    defaultBranch = main
-[url "git@github.com:shivakar"]
-    insteadof = https://github.com/shivakar
 [alias]
     clean-merged-branches = !git branch -vv | grep 'origin/.*: gone]' | awk '{print $1}' | xargs git branch -d
+[url "git@github.com:"]
+    insteadOf = https://github.com/
