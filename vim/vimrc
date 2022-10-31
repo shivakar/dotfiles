@@ -1,44 +1,4 @@
-" Vim Configuration v1.0
-"
-" Create Date: 2017-07-31
-"
-" Modified Dates:
-"
-" ============================== Keyboard shortcuts ==========================
-" Key           Filetype        Action
-" F1
-" F2                            Toggle Nerdtree
-" F3                            Insert time
-" F4
-" F5
-" F6                            
-" F7				Toggle paste mode
-" F8				Toggle line numbers
-" F9
-" F10
-" F11
-" F12           go              Go to definition
-" space 			Clear search highlighting
-" <S-tab>			Cycle through buffers
-" <C-x><Up,Down,Left,Right>	Move between splits
-" \cc                           Comment using nerdcommenter
-" \cu                           Uncomment using nerdcommenter
-" \c<space>                     Toggle comment state
-" <C-n>                         Enter multi-select mode
-" <C-p>                         Remove current select and move to previous
-" <C-x>                         Skip next select in multi-select
-" \o                            Open changelog file to edit
-" <C-e>                         Fast wrap word using auto-pairs
-" \gd           go              Show all function declaration in the package
-" \ga           go              Open alternate file in a new buffer
-" \gah          go              Open alternate file in a horizontal split
-" \gav          go              Open alternate file in a vertical split
-" \gt           go              Run go test
-" \gc           go              Toggle go coverage
-" <C-t>         go              Return to position after F12 jump
-" ]c                            Jump to next git change
-" [c                            Jump to previous git change
-" ============================================================================
+set encoding=utf-8
 
 " Don't run in legacy mode
 set nocompatible
@@ -55,6 +15,7 @@ source $HOME/.vim/plugins.vim
 
 " Basics
 syntax on			    " Enable syntax highlighting
+set nobackup            " don't make foo~ files
 set autowrite 			" Save file before other commands like :next
 set number
 colorscheme luna
@@ -68,36 +29,9 @@ set shiftwidth=4
 set softtabstop=4
 set expandtab
 set smartindent
+set smarttab
 "" smart backspace with autoindent
 set backspace=indent,eol,start
-
-" General writing
-nnoremap <F3> "=strftime("%H:%M:%S:    ")<CR>P
-inoremap <F3> <C-R>=strftime("%H:%M:%S:    ")<CR>
-"" Enable mouse support
-set mouse=a
-"" Toggle paste mode
-map  <F7> :set paste!<CR>i
-map! <F7> <C-o>:set paste!<CR>i
-"" Toggle line numbers
-function! Toggle_sign_column()
-    if &signcolumn == "yes"
-        setlocal signcolumn="no"
-    else
-        setlocal signcolumn="yes"
-    endif
-endfunction
-map  <F8> :set number!
-    \ <bar> GitGutterToggle
-    \ <bar> :call Toggle_sign_column()
-    \ <bar> IndentLinesToggle<CR>
-map! <F8> <C-o>:set number!
-    \ <bar> GitGutterToggle
-    \ <bar> :call Toggle_sign_column()
-    \ <bar> IndentLinesToggle<CR>
-"" Highlight cursor line
-hi CursorLine cterm=None ctermbg=233
-set cursorline
 
 " Search
 set rtp+=/opt/homebrew/bin/fzf
@@ -107,156 +41,3 @@ set hlsearch 			" Highlight search term
 set incsearch			" Show search while typing
 set ignorecase			" Case insensitive search
 set smartcase			" Override ignorecase if search term has uppercase
-
-" Navigation
-"" Cycle through buffers
-map <S-tab> :bn<CR>
-map! <S-tab> <C-o>:bn<CR>
-"" Move between splits
-map  <C-x><Up>    <C-w>k
-map  <C-x><Down>  <C-w>j
-map  <C-x><Left>  <C-w>h
-map  <C-x><Right> <C-w>l
-map! <C-x><Up>    <C-o><C-w>k
-map! <C-x><Down>  <C-o><C-w>j
-map! <C-x><Left>  <C-o><C-w>h
-map! <C-x><Right> <C-o><C-w>l
-
-" ============================================================================
-" ============================================================================
-" Plugin Configuration
-" ============================================================================
-" ============================================================================
-
-" ============================================================================
-" https://github.com/scrooloose/nerdtree
-" ============================================================================
-map  <F2> :NERDTreeToggle<CR>
-map! <F2> <C-o>:NERDTreeToggle<CR>
-
-" ============================================================================
-" https://github.com/easymotion/vim-easymotion
-" ============================================================================
-let g:EasyMotion_do_mapping=0       " Disable default mappings
-let g:EasyMotion_smartcase=1        " Case insensitive search
-map / <Plug>(easymotion-sn)
-
-" ============================================================================
-" https://github.com/SirVer/Ultisnips
-" ============================================================================
-set runtimepath+=~/.vim/custom_snippets/
-let g:UltiSnipsExpandTrigger='<tab>'
-let g:UltiSnipsJumpForwardTrigger='<tab>'
-let g:UltiSnipsJumpBackwardTrigger='<s-tab>'
-
-" ============================================================================
-" https://github.com/valloric/YouCompleteMe
-" ============================================================================
-let g:ycm_global_ycm_extra_conf="~/.vim/ycm_extra_conf.py"
-" Play nice with Ultisnips and supertab
-let g:ycm_key_list_select_completion=['<c-n>', '<Down>']
-let g:ycm_key_list_previous_completion=['<c-p>', '<Up>']
-
-" ============================================================================
-" https://github.com/ervandew/supertab
-" ============================================================================
-let g:SuperTabDefaultCompletionType='<c-n>'
-
-" ============================================================================
-" https://github.com/Yggdroot/indentLine
-" ============================================================================
-let g:indentLine_enabled=1
-let g:indentLine_noConcealCursor=""
-map  <leader>g :IndentLinesToggle<CR>
-map! <leader>g <C-o>:IndentLinesToggle<CR>
-
-" ============================================================================
-" https://github.com/airblade/vim-gitgutter
-" ============================================================================
-set signcolumn=yes
-let g:gitgutter_highlight_lines=0
-let g:gitgutter_realtime=0
-let g:gitgutter_eager=0
-highlight clear SignColumn
-
-" ============================================================================
-" https://github.com/scrooloose/nerdcommenter
-" ============================================================================
-let g:NERDSpaceDelims=1
-
-" ============================================================================
-" https://github.com/jiangmiao/auto-pairs
-" ============================================================================
-let g:AutoPairsShortcutFastWrap='<c-e>'
-let g:AutoPairsMapCR=0
-imap <silent><CR> <CR><Plug>AutoPairsReturn
-
-" ============================================================================
-" https://github.com/scrooloose/syntastic
-" ============================================================================
-let g:syntastic_go_checkers=['go', 'golint', 'govet', 'errcheck', 'golangci-lint']
-let g:syntastic_mode_map={ 'mode': 'active' }
-let g:syntastic_always_populate_loc_list=1
-let g:syntastic_quiet_messages = { "type": "style"  }
-let g:syntastic_auto_loc_list=1
-let g:syntastic_check_on_open=0
-let g:syntastic_check_on_wq=0
-let g:syntastic_aggregate_errors=1
-let g:syntastic_cpp_compiler_options='-Wall -Wextra -Werror -std=c++11 -I/opt/homebrew/include -I/usr/include'
-let g:syntastic_cpp_compiler='clang++'
-let g:syntastic_c_compiler='clang'
-
-" ============================================================================
-" https://github.com/sheerun/vim-polyglot
-" ============================================================================
-let g:markdown_fenced_languages=['go', 'python', 'bash=sh', 'c++=cpp']
-let g:vim_markdown_conceal=0        " Don't hide markdown code
-let g:vim_json_syntax_conceal=0     " Always show quotes
-"" Enable marker based folding for protocol buffer files
-au FileType proto
-    \ setlocal foldmethod=marker |
-    \ setlocal foldmarker={,}    |
-    \ setlocal foldlevel=0
-
-" ============================================================================
-" https://github.com/fatih/vim-go
-" ============================================================================
-let g:go_highlight_build_constraints=1
-let g:go_highlight_extra_types=1
-let g:go_highlight_fields=1
-let g:go_highlight_functions=1
-let g:go_highlight_interfaces=1
-let g:go_highlight_methods=1
-let g:go_highlight_operators=1
-let g:go_highlight_structs=1
-let g:go_highlight_types=1
-let g:go_auto_sameids=1
-let g:go_fmt_command="goimports"
-let g:go_def_mode='gopls'
-let g:go_info_mode='gopls'
-let g:go_fmt_autosave=1
-let g:go_auto_type_info=1
-let g:go_list_type="quickfix"
-let g:go_addtags_transform="snakecase"
-let g:go_metalinter_autosave = 1
-let g:go_metalinter_command="golangci-lint"
-let g:go_metalinter_autosave_enabled=["deadcode", "errcheck", "gosimple", "govet", "ineffassign", "staticcheck", "structcheck", "typecheck", "unused", "varcheck"]
-au FileType go nmap <leader>gd :GoDeclsDir<CR>
-au Filetype go nmap <leader>ga <Plug>(go-alternate-edit)
-au Filetype go nmap <leader>gah <Plug>(go-alternate-split)
-au Filetype go nmap <leader>gav <Plug>(go-alternate-vertical)
-au FileType go nmap <leader>gt :GoTest -short<CR>
-au FileType go nmap <leader>gc :GoCoverageToggle -short<CR>
-au FileType go nmap <F12> <Plug>(go-def)
-
-" ============================================================================
-" https://github.com/vim-airline/vim-airline
-" ============================================================================
-set laststatus=2            " Always show the status line
-let g:airline#extensions#tabline#enabled=1 " Enable tabline integration
-let g:airline#extensions#whitespace#enabled=0
-let g:airline#extensions#branch#enabled=1
-let g:airline_section_z='[%p%%, %LL] [%l L, %v]'
-let g:airline_left_sep=''
-let g:airline_right_sep=''
-
