@@ -1,3 +1,19 @@
+Include config.d/local
+Include config.d/misc
+
+Host github.com
+    HostName github.com
+    ForwardAgent no
+    User git
+    IdentitiesOnly yes
+    IdentityFile ~/.ssh/id_ed25519_cardno_22275657.pub
+
 Host *
-    GSSAPIAuthentication no
-    User shivakar
+    StrictHostKeyChecking ask
+    VerifyHostKeyDNS ask
+    IdentityFile ~/.ssh/id_ed25519_cardno_22275657.pub
+    IdentityFile ~/.ssh/id_rsa
+    UseKeychain yes
+    AddKeysToAgent yes
+    ControlMaster auto
+    ControlPath /tmp/ssh-%r@%h:%p.socket
