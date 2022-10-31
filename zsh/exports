@@ -6,6 +6,7 @@ export HISTCONTROL=ignoreboth
 export HISTSIZE=100000
 export HISTFILESIZE="${HISTSIZE}"
 export HISTIGNORE='&:ls:exit'
+export HISTFILE="$HOME/.zsh_history"
 
 #-------------------------------------------------------------------------------
 # Environment variables

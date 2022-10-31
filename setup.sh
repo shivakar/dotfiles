@@ -7,43 +7,45 @@ if [ "${PWD}" != "$HOME/bin" ]; then
     exit
 fi
 
+echo -n "This will overwrite dotfiles. Are you sure? ('yes' to continue)? "
+read resp
+if [ "${resp}" != "yes" ]; then
+    echo "Invalid response - '$resp'"
+    echo "Exiting..."
+    exit 2
+fi
+
+echo "Startin setup..."
+
 ## Setup symlinks to dotfiles
-### bash config
-ln -sf ~/bin/bash/bashrc ~/.bashrc
-ln -sf ~/bin/bash/bash_profile ~/.bash_profile
-ln -sf ~/bin/bash/inputrc ~/.inputrc
 
 ### zsh config
 ln -sf ~/bin/zsh/zshrc ~/.zshrc
+ln -sf ~/bin/zsh/inputrc ~/.inputrc
+touch ~/.localbashrc
+
+### ssh config
+ln -sfn ~/bin/ssh/ ~/.ssh
+
+### gnupg config
+ln -sfn ~/bin/gnupg ~/.gnupg
 
 ### git config
-if [ ! -f ~/.gitconfig ]; then
-    cp ~/bin/git/gitconfig ~/.gitconfig
-else
-    echo "~/.gitconfig already exists. Not overwriting."
-fi
+ln -sf ~/bin/git/gitconfig ~/.gitconfig
 
 #### tmux config
-[ -L ~/.tmux ] && rm ~/.tmux
-[ -d ~/.tmux ] && echo "~/.tmux exists. Delete and re-run setup." && exit
-ln -sf ~/bin/tmux ~/.tmux
+ln -sfn ~/bin/tmux ~/.tmux
 ln -sf ~/bin/tmux/tmux.conf ~/.tmux.conf
 mkdir -p ~/.tmux/plugins
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+[ ! -d ~/.tmux/plugins/tpm ] && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ~/.tmux/plugins/tpm/bin/install_plugins
 
 #### vim config
-[ -L ~/.vim ] && rm ~/.vim
-[ -d ~/.vim ] && echo "~/.vim exists. Delete and re-run setup." && exit
-ln -sf ~/bin/vim ~/.vim
-ln -sf ~/bin/vim/vimrc ~/.vimrc
-mkdir -p ~/.vim/autoload
-mkdir -p ~/.vim/plugins
-
-#### Install all vim plugins
+ln -sfn ~/bin/vim ~/.vim
 vim +PlugInstall +PlugClean +qall
 
-echo "dotfiles setup complete..."
+### Setup TouchID for sudo
+grep "pam_tid.so" /etc/pam.d/sudo &>/dev/null || \
+    (echo "Setting up TouchID for sudo" && sudo gsed -i '2 i auth       sufficient     pam_tid.so' /etc/pam.d/sudo)
 
-### ssh config
-echo "Remember to setup ~/.ssh/config"
+echo "dotfiles setup complete..."

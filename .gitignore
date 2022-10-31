@@ -16,11 +16,22 @@ pids
 *.seed
 
 # GnuPG
-*.gpg
-private-keys*
-random_seed
-reader*.status
-sshcontrol
+/gnupg/private-keys-v1.d
+/gnupg/.#*
+/gnupg/random_seed
+/gnupg/reader*.status
+/gnupg/sshcontrol
+/gnupg/pubring.kbx
+/gnupg/trustdb.gpg
+/gnupg/S.*
+/gnupg/*.pem
+
+# SSH
+/ssh/config.d
+/ssh/id_*
+/ssh/*.pem
+/ssh/*.key
+/ssh/known_hosts
 
 # tmux
 tmux/plugins

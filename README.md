@@ -6,7 +6,6 @@
 
 For MacOS:
 * [homebrew](https://brew.sh/) is expected to be installed and working correctly.
-* [bash](https://www.gnu.org/software/bash/) v4.0+
 
 ## Installation
 
