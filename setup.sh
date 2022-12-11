@@ -15,11 +15,31 @@ if [ "${resp}" != "yes" ]; then
     exit 2
 fi
 
-echo "Startin setup..."
+echo "Starting setup..."
+
+### Package Setup
+if [[ "$(uname)" == "Linux" ]];
+then
+	user=$(whoami)
+	echo "Switching ${user}'s default shell to /usr/bin/zsh"
+	sudo chsh -s /usr/bin/zsh $user
+
+	echo -n "Installing packages from dnffile."
+	tail -n +2 dnffile  | xargs sudo dnf install
+
+	echo -n "Installing additional software."
+	go install github.com/junegunn/fzf@latest
+elif [[ "$(uname)" == "Darwin" ]];
+then
+	echo -n "Installing package from Brewfile."
+	brew bundle install --file=Brewfile
+fi
 
 ## Setup symlinks to dotfiles
 
 ### zsh config
+echo "Installing oh-my-zsh"
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ln -sf ~/bin/zsh/zshrc ~/.zshrc
 ln -sf ~/bin/zsh/inputrc ~/.inputrc
 touch ~/.localbashrc
@@ -42,10 +62,14 @@ mkdir -p ~/.tmux/plugins
 
 #### vim config
 ln -sfn ~/bin/vim ~/.vim
-vim +PlugInstall +PlugClean +qall
+type vim &>/dev/null && vim +PlugInstall +PlugClean +qall
 
 ### Setup TouchID for sudo
-grep "pam_tid.so" /etc/pam.d/sudo &>/dev/null || \
-    (echo "Setting up TouchID for sudo" && sudo gsed -i '2 i auth       sufficient     pam_tid.so' /etc/pam.d/sudo)
+if  [[ "$(uname)" == "Darwin" ]];
+then
+	grep "pam_tid.so" /etc/pam.d/sudo &>/dev/null || \
+	    (echo "Setting up TouchID for sudo" && sudo gsed -i '2 i auth       sufficient     pam_tid.so' /etc/pam.d/sudo)
+fi
+
 
 echo "dotfiles setup complete..."
