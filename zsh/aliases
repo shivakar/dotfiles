@@ -15,10 +15,10 @@ alias ....='cd ../../..'
 # Colorize
 #-------------------------------------------------------------------------------
 alias diff='colordiff'
-alias ls='exa'
-alias ll='exa --long --git --header --classify'
-alias lt='exa --tree'
-alias llt='exa --long --git --header --classify --tree'
+type exa &> /dev/null && alias ls='exa'
+type exa &> /dev/null && alias ll='exa --long --git --header --classify'
+type exa &> /dev/null && alias lt='exa --tree'
+type exa &> /dev/null && alias llt='exa --long --git --header --classify --tree'
 
 #-------------------------------------------------------------------------------
 # Sysadmin
@@ -30,7 +30,7 @@ alias du='du -h'
 alias psmem='ps aux --sort -rss | head'
 alias pscpu='ps aux --sort -pcpu | head'
 alias path='echo -e ${PATH//:/\\n}'
-alias ip='ipconfig getifaddr en0'
+type ip &> /dev/null || alias ip='ipconfig getifaddr en0'
 
 #-------------------------------------------------------------------------------
 # Programming
@@ -70,7 +70,7 @@ alias kx=kubectx
 # Utilities
 #-------------------------------------------------------------------------------
 function lcd() {
-    which bfind &> /dev/null || exit
+    type bfind &> /dev/null || exit
     d=$(bfind -type d -1 -name "$@" $(pwd))
     if [ -n "$d" ]; then
         cd "$d"
