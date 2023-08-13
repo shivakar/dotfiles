@@ -5,8 +5,8 @@ Host github.com
     HostName github.com
     ForwardAgent no
     User git
-    IdentitiesOnly yes
     IdentityFile ~/.ssh/id_ed25519_cardno_22275657.pub
+    IdentitiesOnly yes
 
 Host *
     StrictHostKeyChecking ask
@@ -17,3 +17,6 @@ Host *
     AddKeysToAgent yes
     ControlMaster auto
     ControlPath /tmp/ssh-%r@%h:%p.socket
+
+Match Host * exec "gpg-connect-agent UPDATESTARTUPTTY /bye"
+
