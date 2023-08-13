@@ -1,13 +1,14 @@
+tap "ariga/tap"
 tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/cask-fonts"
 tap "homebrew/cask-versions"
 tap "homebrew/core"
 tap "shivakar/tap"
-# Codec library for encoding and decoding AV1 video streams
-brew "aom"
 # General-purpose data compression with high compression ratio
 brew "xz"
+# Codec library for encoding and decoding AV1 video streams
+brew "aom"
 # Record and share terminal sessions
 brew "asciinema"
 # Spell checker with better logic than ispell
@@ -16,20 +17,18 @@ brew "aspell"
 brew "awscli"
 # Core application library for C
 brew "glib"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.9"
 # Color-highlighted diff(1) output
 brew "colordiff"
 # GNU File, Shell, and Text utilities
 brew "coreutils"
 # Load/unload environment variables based on $PWD
 brew "direnv"
+# Command-line tool for DigitalOcean
+brew "doctl"
 # Modern replacement for 'ls'
 brew "exa"
 # Perl lib for reading and writing EXIF metadata
 brew "exiftool"
-# GNU Ubiquitous Intelligent Language for Extensions
-brew "guile"
 # Library to load and enumerate PKCS#11 modules
 brew "p11-kit"
 # Validating, recursive, caching DNS resolver
@@ -38,8 +37,8 @@ brew "unbound"
 brew "gnutls"
 # OpenType text shaping engine
 brew "harfbuzz"
-# Generate introspection data for GObject libraries
-brew "gobject-introspection"
+# Framework for layout and rendering of i18n text
+brew "pango"
 # Secure Reliable Transport
 brew "srt"
 # OCR (Optical Character Recognition) engine
@@ -64,14 +63,16 @@ brew "pinentry"
 brew "gnupg"
 # Open source programming language to build simple/reliable/efficient software
 brew "go"
-# Framework for layout and rendering of i18n text
-brew "pango"
+# Generate introspection data for GObject libraries
+brew "gobject-introspection"
 # Library to render SVG files using Cairo
 brew "librsvg"
 # Graph visualization software from AT&T and Bell Labs
 brew "graphviz"
 # GNU grep, egrep and fgrep
 brew "grep"
+# GNU Ubiquitous Intelligent Language for Extensions
+brew "guile"
 # Popular GNU data compression program
 brew "gzip"
 # Kubernetes package manager
@@ -86,6 +87,8 @@ brew "shared-mime-info"
 brew "libheif"
 # Tools and libraries to manipulate images in many formats
 brew "imagemagick"
+# Calculate various network masks, etc. from a given IP address
+brew "ipcalc"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
 # Package manager for kubectl plugins
@@ -114,6 +117,8 @@ brew "nmap"
 brew "node"
 # Node.js virtual environment builder
 brew "nodeenv"
+# Manage multiple Node.js versions
+brew "nvm"
 # 7-Zip (high compression file archiver) implementation
 brew "p7zip"
 # Swiss-army knife of markup format conversion
@@ -140,6 +145,8 @@ brew "pyenv"
 brew "pyenv-virtualenv"
 # It's not just a linter that annoys you!
 brew "pylint"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.9"
 # Ruby version manager
 brew "rbenv"
 # Reattach process (e.g., tmux) to background
@@ -182,10 +189,12 @@ brew "wget"
 brew "yamllint"
 # Tool for managing your YubiKey configuration
 brew "ykman"
-# Process YAML documents from the CLI
+# Process YAML, JSON, XML, CSV and properties documents from the CLI
 brew "yq"
 # Fork of youtube-dl with additional features and fixes
 brew "yt-dlp"
+# A database toolkit
+brew "ariga/tap/atlas"
 # Command-line helper for the 1Password password manager
 cask "1password-cli"
 # Application uninstaller
@@ -194,12 +203,17 @@ cask "appcleaner"
 cask "basictex"
 # Duplicate Finder
 cask "cisdem-duplicate-finder"
+# Productivity platform for tasks, docs, goals, and chat
+cask "clickup"
 # Voice and text chat software
 cask "discord"
+# Drivers for DisplayLink docks, adapters and monitors
+cask "displaylink"
 # Client for the Dropbox cloud storage service
 cask "dropbox"
 # Web browser
 cask "firefox"
+# Free monospaced font with programming ligatures
 cask "font-fira-code"
 # 3D parametric modeler
 cask "freecad"
@@ -209,21 +223,26 @@ cask "google-chrome"
 cask "google-earth-pro"
 # Hex editor focussing on speed
 cask "hex-fiend"
+# Kubernetes desktop client
+cask "infra"
 # HTTP and GraphQL Client
 cask "insomnia"
 # Terminal emulator as alternative to Apple's Terminal app
 cask "iterm2"
 # App to manage software development and track bugs
 cask "linear-linear"
+# Reverse proxy, secure introspectable tunnels to localhost
+cask "ngrok"
+# App to write, plan, collaborate, and get organized
+cask "notion"
 # Open-source software for live streaming and screen recording
 cask "obs"
 # Knowledge base that works on top of a local folder of plain text Markdown files
 cask "obsidian"
+# Visual communication software
 cask "omnigraffle6"
 # Home media player
 cask "plex"
-# VPN client
-cask "private-internet-access"
 # Archive manager for data compression and backups
 cask "rar"
 # Move and resize windows using keyboard shortcuts or snap areas
@@ -236,8 +255,8 @@ cask "secure-pipes"
 cask "slack"
 # 3D printing software
 cask "snapmaker-luban"
-# Move and resize windows with ease
-cask "spectacle"
+# Native GUI tool for relational databases
+cask "tableplus"
 # To-do list
 cask "todoist"
 # Configurable document editor that supports Markdown
@@ -261,6 +280,9 @@ mas "Keynote", id: 409183694
 mas "Notability", id: 360593530
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
+mas "Pandan", id: 1569600264
 mas "Paprika Recipe Manager 3", id: 1303222628
 mas "Speedtest", id: 1153157709
+mas "Strides", id: 672401817
+mas "UTC Time", id: 1538245904
 mas "Xcode", id: 497799835
