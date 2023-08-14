@@ -96,9 +96,11 @@ fi
 
 ### ssh config
 ln -sfn ~/bin/ssh/ ~/.ssh
+mkdir ~/.ssh/config.d
 op document get id_rsa.pub --out-file ~/.ssh/id_rsa.pub --force
 op document get id_rsa --out-file ~/.ssh/id_rsa --force
 op document get id_ed25519_cardno_22275657.pub --out-file ~/.ssh/id_ed25519_cardno_22275657.pub --force
+op document get "ssh/config.d/personal" --out-file ~/.ssh/config.d/personal --force
 chmod 700 ~/.ssh
 chmod 600 ~/.ssh/authorized_keys
 chmod 400 ~/.ssh/*.pub

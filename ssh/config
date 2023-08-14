@@ -1,5 +1,5 @@
+Include config.d/personal
 Include config.d/local
-Include config.d/misc
 
 Host github.com
     HostName github.com
@@ -9,6 +9,7 @@ Host github.com
     IdentitiesOnly yes
 
 Host *
+    User shivakar
     StrictHostKeyChecking ask
     VerifyHostKeyDNS ask
     IdentityFile ~/.ssh/id_ed25519_cardno_22275657.pub
