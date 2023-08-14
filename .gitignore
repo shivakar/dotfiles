@@ -43,5 +43,8 @@ tmux/plugins
 !tmux/plugins/tpm
 tmux/resurrect
 
+# personal files
+*.personal
+
 # Temporary files
 .netrwhist

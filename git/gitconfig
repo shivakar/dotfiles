@@ -54,5 +54,7 @@
     untracked = red bold
 [alias]
     clean-merged-branches = !git branch -vv | grep 'origin/.*: gone]' | awk '{print $1}' | xargs git branch -d
+[include]
+    path=bin/git/gitconfig.personal
 [url "git@github.com:"]
     insteadOf = https://github.com/

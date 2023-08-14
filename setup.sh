@@ -117,6 +117,7 @@ gpg --import-ownertrust < ~/.gnupg/ownertrust.txt
 
 ### git config
 ln -sf ~/bin/git/gitconfig ~/.gitconfig
+op document get gitconfig.personal --out-file ~/bin/git/gitconfig.personal --force
 
 ### Final instructions
 echo ""
