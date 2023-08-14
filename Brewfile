@@ -1,9 +1,7 @@
 tap "ariga/tap"
 tap "homebrew/bundle"
-tap "homebrew/cask"
 tap "homebrew/cask-fonts"
 tap "homebrew/cask-versions"
-tap "homebrew/core"
 tap "shivakar/tap"
 # General-purpose data compression with high compression ratio
 brew "xz"
@@ -211,6 +209,8 @@ cask "discord"
 cask "displaylink"
 # Client for the Dropbox cloud storage service
 cask "dropbox"
+# Collaborative team software
+cask "figma"
 # Web browser
 cask "firefox"
 # Free monospaced font with programming ligatures
