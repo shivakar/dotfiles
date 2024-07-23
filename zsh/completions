@@ -1,0 +1,1 @@
+type az &>/dev/null && source /opt/homebrew/etc/bash_completion.d/az

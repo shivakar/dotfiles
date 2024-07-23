@@ -23,6 +23,9 @@ if [[ ! -d $ZSH_CUSTOM/themes/powerlevel10k ]]; then
 	git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM}/themes/powerlevel10k
 fi
 
+## Source prerequisites for plugins
+source $HOME/bin/zsh/python # direnv needs pyenv init first
+
 ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(
 	git
@@ -38,16 +41,18 @@ plugins=(
 
 [[ "$(uname)" == "Darwin" ]] && plugins+=(fzf gpg-agent)
 [[ "$(uname)" == "Linux" ]] && plugins+=(dnf)
+
 source $ZSH/oh-my-zsh.sh
-source $HOME/bin/zsh/aliases
-source $HOME/bin/zsh/exports
-source $HOME/bin/zsh/python
-source $HOME/bin/zsh/golang
-source $HOME/.localbashrc
 
 # Remote GPG forwarding
 [[ "$(uname)" == "Linux" ]] && type gpgconf &>/dev/null && gpgconf --create-socketdir
 [[ "$(uname)" == "Linux" ]] && type gpgconf &>/dev/null && export SSH_AUTH_SOCK=$(gpgconf --list-dir agent-ssh-socket)
+
+source $HOME/bin/zsh/aliases
+source $HOME/bin/zsh/exports
+source $HOME/bin/zsh/golang
+source $HOME/bin/zsh/completions
+source $HOME/.localbashrc
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
