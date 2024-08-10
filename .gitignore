@@ -30,6 +30,9 @@ Brewfile.lock.json
 /gnupg/*.pem
 /gnupg/master.pub.key
 /gnupg/ownertrust.txt
+/gnupg/openpgp-revocs.d
+/gnupg/tofu.db
+/gnupg/*.asc
 
 # SSH
 /ssh/config.d

@@ -15,14 +15,18 @@ alias ....='cd ../../..'
 # Colorize
 #-------------------------------------------------------------------------------
 alias diff='colordiff'
-type exa &> /dev/null && alias ls='exa'
-type exa &> /dev/null && alias ll='exa --long --git --header --classify'
-type exa &> /dev/null && alias lt='exa --tree'
-type exa &> /dev/null && alias llt='exa --long --git --header --classify --tree'
+type eza &> /dev/null && alias ls='eza'
+type eza &> /dev/null && alias ll='eza --long --git --header --classify'
+type eza &> /dev/null && alias lt='eza --tree'
+type eza &> /dev/null && alias llt='eza --long --git --header --classify --tree'
+type bat &> /dev/null && alias cat='bat'
+type bat &> /dev/null && alias catt='bat -pp'
 
 #-------------------------------------------------------------------------------
 # Sysadmin
 #-------------------------------------------------------------------------------
+# Preserve scrollback history
+alias clear='printf "\033c"'
 alias top='htop'
 alias free='free -g -l -t'
 alias df='df -h'

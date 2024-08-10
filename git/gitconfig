@@ -1,43 +1,18 @@
 [user]
     name = Shivakar Vulli
     email = svulli@shivakar.com
-    signingkey = 3E9AB15A3BB18E4C!
+    signingkey = C4B3535F1244AE35!
+
 [github]
     user = shivakar
+
 [core]
     pager = less -F -X
     quotepath = on
     commitGraph = true
+    editor = nvim
 [color]
     ui = true
-[commit]
-    verbose = true
-    gpgsign = true
-[branch]
-    autosetupmerge = true
-    autosetuprebase = always
-[push]
-    default = simple
-    followTags = true
-[pull]
-    rebase = true
-[fetch]
-    prune = true
-    writeCommitGraph = true
-[diff]
-    algorithm = patience
-    compactionheuristic = true
-    colorMooved = default
-    tool = vimdiff
-[help]
-    autocorrect = 1
-[filter "lfs"]
-    clean = git-lfs clean -- %f
-    smudge = git-lfs smudge -- %f
-    process = git-lfs filter-process
-    required = true
-[init]
-    defaultBranch = main
 [color "branch"]
     current = yellow bold
     local = green bold
@@ -52,9 +27,48 @@
     added = green bold
     changed = yellow bold
     untracked = red bold
+
+[credential]
+    helper=osxkeychain
+
+[commit]
+    verbose = true
+    gpgsign = true
+
+[push]
+    default = simple
+    followTags = true
+
+[pull]
+    rebase = true
+
+[fetch]
+    prune = true
+    writeCommitGraph = true
+
+[diff]
+    algorithm = patience
+    compactionheuristic = true
+    colorMooved = default
+    tool = vimdiff
+
+[help]
+    autocorrect = 1
+
+[filter "lfs"]
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+
+[init]
+    defaultBranch = main
+
 [alias]
     clean-merged-branches = !git branch -vv | grep 'origin/.*: gone]' | awk '{print $1}' | xargs git branch -d
+
 [include]
     path=bin/git/gitconfig.personal
+
 [url "git@github.com:"]
     insteadOf = https://github.com/

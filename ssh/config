@@ -5,19 +5,13 @@ Host github.com
     HostName github.com
     ForwardAgent no
     User git
+    IdentityFile ~/.ssh/id_rsa
     IdentityFile ~/.ssh/id_ed25519_cardno_22275657
     IdentitiesOnly yes
 
 Host *
     User shivakar
-    StrictHostKeyChecking ask
-    VerifyHostKeyDNS ask
-    IdentityFile ~/.ssh/id_ed25519_cardno_22275657
     IdentityFile ~/.ssh/id_rsa
+    IdentityFile ~/.ssh/id_ed25519_cardno_22275657
     UseKeychain yes
     AddKeysToAgent yes
-    ControlMaster auto
-    ControlPath /tmp/ssh-%r@%h:%p.socket
-
-Match host * exec "gpg-connect-agent UPDATESTARTUPTTY /bye"
-
