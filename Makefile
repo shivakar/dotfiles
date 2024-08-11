@@ -1,7 +1,7 @@
 SHELL := /usr/bin/env zsh
 export OPTOKEN := $(shell op signin --raw)
 
-.PHONY: all setup setup-macos setup-linux zsh tmux ssh gnupg gitconfig done check-op
+.PHONY: all check-op setup setup-macos setup-linux zsh tmux ssh gnupg gitconfig nvim done
 
 all: setup
 
@@ -93,6 +93,12 @@ gitconfig:
 	@echo "Setting up Git configuration"; \
 	ln -sf "$$HOME/dotfiles/git/gitconfig" "$$HOME/.gitconfig"; \
 	op --session $$OPTOKEN document get gitconfig.personal --out-file "$$HOME/dotfiles/git/gitconfig.personal" --force
+
+nvim:
+	@echo "Setting up Neovim configuration"; \
+	ln -s "$$(pwd)/nvim" "$$HOME/.config/nvim"; \
+	mkdir "$$HOME/.npm"; \
+	npm config set prefix "$$HOME"/.npm; \
 
 done:
 	@echo ""; \
