@@ -1,20 +1,46 @@
 tap "ariga/tap"
+tap "azure/kubelogin"
 tap "homebrew/bundle"
 tap "homebrew/cask-fonts"
 tap "homebrew/cask-versions"
+tap "omissis/go-jsonschema"
 tap "shivakar/tap"
+# Run your GitHub Actions locally
+brew "act"
 # General-purpose data compression with high compression ratio
 brew "xz"
+# New file format for still image compression
+brew "jpeg-xl"
 # Codec library for encoding and decoding AV1 video streams
 brew "aom"
 # Record and share terminal sessions
 brew "asciinema"
 # Spell checker with better logic than ispell
 brew "aspell"
+# C parser in Python
+brew "pycparser"
+# C Foreign Function Interface for Python
+brew "cffi"
+# Cryptographic recipes and primitives for Python
+brew "cryptography"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.11"
 # Official Amazon AWS command-line interface
 brew "awscli"
+# Microsoft Azure CLI 2.0
+brew "azure-cli"
+# Clone of cat(1) with syntax highlighting and Git integration
+brew "bat"
+# Resource monitor. C++ version and continuation of bashtop and bpytop
+brew "btop"
+# Powerful, enterprise-ready, open source web server with automatic HTTPS
+brew "caddy"
 # Core application library for C
 brew "glib"
+# Statistics utility to count lines of code
+brew "cloc"
+# Cloudflare Tunnel client (formerly Argo Tunnel)
+brew "cloudflared"
 # Color-highlighted diff(1) output
 brew "colordiff"
 # GNU File, Shell, and Text utilities
@@ -23,10 +49,16 @@ brew "coreutils"
 brew "direnv"
 # Command-line tool for DigitalOcean
 brew "doctl"
-# Modern replacement for 'ls'
-brew "exa"
+# Text processing system for reStructuredText
+brew "docutils"
+# Convert text between DOS, UNIX, and Mac formats
+brew "dos2unix"
+# Simple command-line tool for creating clusters on Amazon EKS
+brew "eksctl"
 # Perl lib for reading and writing EXIF metadata
 brew "exiftool"
+# Modern, maintained replacement for ls
+brew "eza"
 # Library to load and enumerate PKCS#11 modules
 brew "p11-kit"
 # Validating, recursive, caching DNS resolver
@@ -35,6 +67,12 @@ brew "unbound"
 brew "gnutls"
 # OpenType text shaping engine
 brew "harfbuzz"
+# Library for JPEG-2000 image manipulation
+brew "openjpeg"
+# Subtitle renderer for the ASS/SSA subtitle format
+brew "libass"
+# Reliable Internet Stream Transport (RIST)
+brew "librist"
 # Framework for layout and rendering of i18n text
 brew "pango"
 # Secure Reliable Transport
@@ -45,12 +83,20 @@ brew "tesseract"
 brew "ffmpeg"
 # Command-line fuzzy finder written in Go
 brew "fzf"
+# Library for encoding and decoding .avif files
+brew "libavif"
+# Graphics library to dynamically manipulate images
+brew "gd"
 # Toolkit for image loading and pixel buffer manipulation
 brew "gdk-pixbuf"
+# Interpreter for PostScript and PDF
+brew "ghostscript"
 # GIF image/animation creator/editor
 brew "gifsicle"
 # Distributed revision control system
 brew "git"
+# Quickly rewrite git repository history
+brew "git-filter-repo"
 # Git extension for versioning large files
 brew "git-lfs"
 # GNU implementation of the famous stream editor
@@ -63,6 +109,10 @@ brew "gnupg"
 brew "go"
 # Generate introspection data for GObject libraries
 brew "gobject-introspection"
+# Image manipulation
+brew "netpbm"
+# GNU triangulated surface library
+brew "gts"
 # Library to render SVG files using Cairo
 brew "librsvg"
 # Graph visualization software from AT&T and Bell Labs
@@ -83,12 +133,18 @@ brew "hugo"
 brew "shared-mime-info"
 # ISO/IEC 23008-12:2017 HEIF file format decoder and encoder
 brew "libheif"
+# Library for reading RAW files from digital photo cameras
+brew "libraw"
 # Tools and libraries to manipulate images in many formats
 brew "imagemagick"
 # Calculate various network masks, etc. from a given IP address
 brew "ipcalc"
+# Sort Python imports automatically
+brew "isort"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
+# Easy way to access the system keyring service from python
+brew "keyring"
 # Package manager for kubectl plugins
 brew "krew"
 # Tool that can switch between kubectl contexts easily and create aliases
@@ -97,8 +153,12 @@ brew "kubectx"
 brew "less"
 # Provides library functionality for FIDO U2F & FIDO 2.0, including USB
 brew "libfido2"
+# Next-gen compiler infrastructure
+brew "llvm"
 # Powerful, lightweight programming language
 brew "lua"
+# Language Server for the Lua language
+brew "lua-language-server"
 # Utility for directing compilation
 brew "make"
 # Mac App Store command-line interface
@@ -115,8 +175,12 @@ brew "nmap"
 brew "node"
 # Node.js virtual environment builder
 brew "nodeenv"
+# Package for scientific computing with Python
+brew "numpy"
 # Manage multiple Node.js versions
 brew "nvm"
+# Development kit for the Java programming language
+brew "openjdk"
 # 7-Zip (high compression file archiver) implementation
 brew "p7zip"
 # Swiss-army knife of markup format conversion
@@ -133,6 +197,8 @@ brew "png2ico"
 brew "pngcrush"
 # Object-relational database system
 brew "postgresql@14"
+# Show ps output as a tree
+brew "pstree"
 # Monitor data's progress through a pipe
 brew "pv"
 # Password generator
@@ -145,6 +211,8 @@ brew "pyenv-virtualenv"
 brew "pylint"
 # Interpreted, interactive, object-oriented programming language
 brew "python@3.9"
+# Install various Ruby versions and implementations
+brew "ruby-build"
 # Ruby version manager
 brew "rbenv"
 # Reattach process (e.g., tmux) to background
@@ -175,10 +243,16 @@ brew "tnftp"
 brew "trash"
 # Display directories as trees (with optional color/HTML output)
 brew "tree"
+# Language for application scale JavaScript development
+brew "typescript"
+# Language Server Protocol implementation for TypeScript wrapping tsserver
+brew "typescript-language-server"
 # Source code beautifier
 brew "uncrustify"
 # Extraction utility for .zip compressed archives
 brew "unzip"
+# Language servers for HTML, CSS, JavaScript, and JSON extracted from vscode
+brew "vscode-langservers-extracted"
 # Executes a program periodically, showing output fullscreen
 brew "watch"
 # Internet file retriever
@@ -189,20 +263,32 @@ brew "yamllint"
 brew "ykman"
 # Process YAML, JSON, XML, CSV and properties documents from the CLI
 brew "yq"
-# Fork of youtube-dl with additional features and fixes
+# Feature-rich command-line audio/video downloader
 brew "yt-dlp"
 # A database toolkit
 brew "ariga/tap/atlas"
-# Command-line helper for the 1Password password manager
+# A Kubernetes credential (exec) plugin implementing azure authentication
+brew "azure/kubelogin/kubelogin"
+# go-jsonschema binary
+brew "omissis/go-jsonschema/go-jsonschema"
+# Command-line interface for 1Password
 cask "1password-cli"
 # Application uninstaller
 cask "appcleaner"
 # Compact TeX distribution as alternative to the full TeX Live / MacTeX
 cask "basictex"
+# Opensource IDE for exploring and testing api's
+cask "bruno"
+# E-books management software
+cask "calibre"
+# Automated testing of webapps for Google Chrome
+cask "chromedriver"
 # Duplicate Finder
 cask "cisdem-duplicate-finder"
 # Productivity platform for tasks, docs, goals, and chat
 cask "clickup"
+# API documentation browser and code snippet manager
+cask "dash"
 # Voice and text chat software
 cask "discord"
 # Drivers for DisplayLink docks, adapters and monitors
@@ -213,14 +299,17 @@ cask "dropbox"
 cask "figma"
 # Web browser
 cask "firefox"
-# Free monospaced font with programming ligatures
 cask "font-fira-code"
-# 3D parametric modeler
+# 3D parametric modeller
 cask "freecad"
+# Desktop client for GitHub repositories
+cask "github"
 # Web browser
 cask "google-chrome"
 # Virtual globe
 cask "google-earth-pro"
+# Grammarly for desktop
+cask "grammarly-desktop"
 # Hex editor focussing on speed
 cask "hex-fiend"
 # Kubernetes desktop client
@@ -233,7 +322,7 @@ cask "iterm2"
 cask "linear-linear"
 # Reverse proxy, secure introspectable tunnels to localhost
 cask "ngrok"
-# App to write, plan, collaborate, and get organized
+# App to write, plan, collaborate, and get organised
 cask "notion"
 # Open-source software for live streaming and screen recording
 cask "obs"
@@ -241,8 +330,12 @@ cask "obs"
 cask "obsidian"
 # Visual communication software
 cask "omnigraffle6"
+# Web browser
+cask "opera@developer"
 # Home media player
 cask "plex"
+# Peer to peer Bitorrent client
+cask "qbittorrent"
 # Archive manager for data compression and backups
 cask "rar"
 # Move and resize windows using keyboard shortcuts or snap areas
@@ -255,6 +348,8 @@ cask "secure-pipes"
 cask "slack"
 # 3D printing software
 cask "snapmaker-luban"
+# Video game digital distribution service
+cask "steam"
 # Native GUI tool for relational databases
 cask "tableplus"
 # To-do list
@@ -262,27 +357,39 @@ cask "todoist"
 # Configurable document editor that supports Markdown
 cask "typora"
 # Code editor
-cask "visual-studio-code-insiders"
+cask "visual-studio-code@insiders"
 # Multimedia player
 cask "vlc"
 # Tool to run web apps like desktop apps
 cask "webcatalog"
 # Video communication and virtual meeting platform
 cask "zoom"
-# Collect, organize, cite, and share research sources
+# Collect, organise, cite, and share research sources
 cask "zotero"
 mas "Amphetamine", id: 937984704
 mas "Apple Configurator", id: 1037126344
+mas "Azure VPN Client", id: 1553936137
+mas "Cityscapes", id: 1631153096
+mas "Color Picker", id: 1545870783
 mas "DaisyDisk", id: 411643860
 mas "GarageBand", id: 682658836
 mas "iMovie", id: 408981434
+mas "Just Focus", id: 1142151959
+mas "Just Press Record", id: 1033342465
 mas "Keynote", id: 409183694
+mas "Kingdom Rush Vengeance+", id: 1610130712
+mas "Microsoft Remote Desktop", id: 1295203466
+mas "Minesweeper", id: 1475921958
+mas "Mini Motorways", id: 1456188526
 mas "Notability", id: 360593530
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 mas "Pandan", id: 1569600264
 mas "Paprika Recipe Manager 3", id: 1303222628
+mas "Prime Video", id: 545519333
 mas "Speedtest", id: 1153157709
 mas "Strides", id: 672401817
+mas "Tailscale", id: 1475387142
 mas "UTC Time", id: 1538245904
 mas "Xcode", id: 497799835
+mas "♡ Sudoku Daily", id: 408895572
