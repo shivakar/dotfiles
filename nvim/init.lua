@@ -23,7 +23,7 @@ end
 
 local system_name = vim.loop.os_uname().sysname
 
-local lua_ls_cmd = nil
+local lua_ls_cmd = { "lua-language-server" }
 
 if system_name == "Linux" then
   lua_ls_cmd = {
@@ -33,12 +33,6 @@ if system_name == "Linux" then
     "--logpath", vim.fn.expand("~/.cache/lua-language-server/log"),
     "--cachepath", vim.fn.expand("~/.cache/lua-language-server/cache"),
   }
-elseif system_name == "Darwin" then      -- macOS
-  lua_ls_cmd = { "lua-language-server" } -- Homebrew manages the path
-else
-  -- Handle other OS types if necessary
-  print("Unsupported system: " .. system_name)
-  return
 end
 
 
@@ -343,6 +337,7 @@ require("lazy").setup({
       require("lspconfig").cssls.setup({
         capabilities = capabilities,
       })
+
 
       require("lspconfig").tsserver.setup({
         capabilities = capabilities,
