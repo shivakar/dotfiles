@@ -99,7 +99,7 @@ nvim:
 	ln -s "$$(pwd)/nvim" "$$HOME/.config/nvim"; \
 	mkdir "$$HOME/.npm"; \
 	npm config set prefix "$$HOME"/.npm; \
-	npm install -g vscode-langservers-extracted; \
+	npm install -g vscode-langservers-extracted typescript-language-server typescript; \
 	echo "Remember to manually install lua-language-server and superhtml..."
 
 done:

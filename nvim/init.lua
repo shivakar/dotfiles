@@ -338,7 +338,6 @@ require("lazy").setup({
         capabilities = capabilities,
       })
 
-
       require("lspconfig").tsserver.setup({
         capabilities = capabilities,
       })
