@@ -6,12 +6,11 @@ Host github.com
     ForwardAgent no
     User git
     IdentityFile ~/.ssh/id_rsa
-    IdentityFile ~/.ssh/id_ed25519_cardno_22275657
     IdentitiesOnly yes
 
 Host *
     User shivakar
     IdentityFile ~/.ssh/id_rsa
-    IdentityFile ~/.ssh/id_ed25519_cardno_22275657
-    UseKeychain yes
+    IgnoreUnknown AddKeysToAgent,UseKeychain
     AddKeysToAgent yes
+    UseKeychain yes

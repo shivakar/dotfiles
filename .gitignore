@@ -51,6 +51,7 @@ Brewfile.lock.json
 /ssh/*.pem
 /ssh/*.key
 /ssh/known_hosts
+/ssh/ssh_auth_sock
 
 # tmux
 tmux/plugins
