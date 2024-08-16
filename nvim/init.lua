@@ -344,6 +344,11 @@ require("lazy").setup({
       require("lspconfig").tsserver.setup({
         capabilities = capabilities,
       })
+
+      require("lspconfig").bashls.setup({
+        capabilities = capabilities,
+        filetypes = { "sh", "zsh", "bash", "make" },
+      })
     end,
   },
 

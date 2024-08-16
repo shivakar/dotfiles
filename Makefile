@@ -4,7 +4,7 @@ export OPTOKEN := $(shell PATH=$(PATH) op signin --raw)'
 # Define a variable for the op command that checks if OPTOKEN is set; only happens in Linux
 OP_CMD := $(shell if [ -z "$$OPTOKEN" ]; then echo "op"; else echo "op --session $$OPTOKEN"; fi)
 
-.PHONY: all check-op setup setup-macos setup-linux zsh tmux ssh gnupg gitconfig nvim done clean
+.PHONY: all check-op setup setup-macos setup-linux zsh tmux ssh gnupg gitconfig nvim gotools done clean
 
 all: setup
 
@@ -49,7 +49,7 @@ setup-linux:
 		go install github.com/junegunn/fzf@latest; \
 		mkdir "$$HOME/.npm"; \
 		npm config set prefix "$$HOME"/.npm; \
-		npm install -g vscode-langservers-extracted typescript-language-server typescript; \
+		npm install -g vscode-langservers-extracted typescript-language-server typescript bash-language-server; \
 	fi
 
 zsh:
@@ -114,11 +114,20 @@ nvim:
 	ln -sf "$$(pwd)/nvim" "$$HOME/.config/nvim"; \
 	echo "Remember to manually install lua-language-server and superhtml..."
 
+gotools:
+	go install github.com/junegunn/fzf@latest
+	go install golang.org/x/tools/gopls@latest
+	go install github.com/bokwoon95/wgo@latest
+	go install mvdan.cc/sh/v3/cmd/shfmt@latest
+	go install github.com/shivakar/bfind@latest
+	go install github.com/gzuidhof/tygo@latest
+
+
 done:
 	@echo ""; \
 	echo "dotfiles setup complete..."; \
 	echo "Restart the terminal and then do the following:"; \
-	echo ""
+	echo "    make gotools"
 
 clean:
 	rm ~/.gitconfig
