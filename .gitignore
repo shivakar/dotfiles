@@ -50,7 +50,7 @@ Brewfile.lock.json
 /ssh/id_*
 /ssh/*.pem
 /ssh/*.key
-/ssh/known_hosts
+/ssh/known_hosts*
 /ssh/ssh_auth_sock
 
 # tmux

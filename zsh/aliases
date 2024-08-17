@@ -14,7 +14,7 @@ alias ....='cd ../../..'
 #-------------------------------------------------------------------------------
 # Colorize
 #-------------------------------------------------------------------------------
-alias diff='colordiff'
+type colordiff &> /dev/null && alias diff='colordiff'
 type eza &> /dev/null && alias ls='eza'
 type eza &> /dev/null && alias ll='eza --long --git --header --classify'
 type eza &> /dev/null && alias lt='eza --tree'
@@ -27,7 +27,7 @@ type bat &> /dev/null && alias catt='bat -pp'
 #-------------------------------------------------------------------------------
 # Preserve scrollback history
 alias clear='printf "\033c"'
-alias top='htop'
+type btop &> /dev/null && alias top='btop' htop='btop' || alias top='htop'
 alias free='free -g -l -t'
 alias df='df -h'
 alias du='du -h'

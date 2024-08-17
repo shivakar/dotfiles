@@ -29,12 +29,14 @@ brew "python@3.11"
 brew "awscli"
 # Microsoft Azure CLI 2.0
 brew "azure-cli"
+# Platform built on V8 to build network applications
+brew "node"
+# Language Server for Bash
+brew "bash-language-server"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
 # Resource monitor. C++ version and continuation of bashtop and bpytop
 brew "btop"
-# Powerful, enterprise-ready, open source web server with automatic HTTPS
-brew "caddy"
 # Core application library for C
 brew "glib"
 # Statistics utility to count lines of code
@@ -166,13 +168,13 @@ brew "mas"
 # Fly through your shell history
 brew "mcfly"
 # Open source relational database management system
-brew "mysql"
+brew "mysql", link: false
+# Open source relational database management system
+brew "mysql-client@8.4", link: true
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
 # Port scanning utility for large networks
 brew "nmap"
-# Platform built on V8 to build network applications
-brew "node"
 # Node.js virtual environment builder
 brew "nodeenv"
 # Package for scientific computing with Python
@@ -265,6 +267,8 @@ brew "ykman"
 brew "yq"
 # Feature-rich command-line audio/video downloader
 brew "yt-dlp"
+# Programming language designed for robustness, optimality, and clarity
+brew "zig"
 # A database toolkit
 brew "ariga/tap/atlas"
 # A Kubernetes credential (exec) plugin implementing azure authentication
@@ -285,10 +289,6 @@ cask "calibre"
 cask "chromedriver"
 # Duplicate Finder
 cask "cisdem-duplicate-finder"
-# Productivity platform for tasks, docs, goals, and chat
-cask "clickup"
-# API documentation browser and code snippet manager
-cask "dash"
 # Voice and text chat software
 cask "discord"
 # Drivers for DisplayLink docks, adapters and monitors
@@ -299,6 +299,8 @@ cask "dropbox"
 cask "figma"
 # Web browser
 cask "firefox"
+# UI toolkit for building applications for mobile, web and desktop
+cask "flutter"
 cask "font-fira-code"
 # 3D parametric modeller
 cask "freecad"
@@ -308,20 +310,14 @@ cask "github"
 cask "google-chrome"
 # Virtual globe
 cask "google-earth-pro"
-# Grammarly for desktop
-cask "grammarly-desktop"
 # Hex editor focussing on speed
 cask "hex-fiend"
 # Kubernetes desktop client
 cask "infra"
-# HTTP and GraphQL Client
-cask "insomnia"
 # Terminal emulator as alternative to Apple's Terminal app
 cask "iterm2"
 # App to manage software development and track bugs
 cask "linear-linear"
-# Reverse proxy, secure introspectable tunnels to localhost
-cask "ngrok"
 # App to write, plan, collaborate, and get organised
 cask "notion"
 # Open-source software for live streaming and screen recording
@@ -340,8 +336,6 @@ cask "qbittorrent"
 cask "rar"
 # Move and resize windows using keyboard shortcuts or snap areas
 cask "rectangle"
-# File syncing client
-cask "seafile-client"
 # Manage SSH tunnels
 cask "secure-pipes"
 # Team communication and collaboration software
@@ -377,7 +371,6 @@ mas "iMovie", id: 408981434
 mas "Just Focus", id: 1142151959
 mas "Just Press Record", id: 1033342465
 mas "Keynote", id: 409183694
-mas "Kingdom Rush Vengeance+", id: 1610130712
 mas "Microsoft Remote Desktop", id: 1295203466
 mas "Minesweeper", id: 1475921958
 mas "Mini Motorways", id: 1456188526
@@ -388,8 +381,6 @@ mas "Pandan", id: 1569600264
 mas "Paprika Recipe Manager 3", id: 1303222628
 mas "Prime Video", id: 545519333
 mas "Speedtest", id: 1153157709
-mas "Strides", id: 672401817
-mas "Tailscale", id: 1475387142
 mas "UTC Time", id: 1538245904
 mas "Xcode", id: 497799835
 mas "♡ Sudoku Daily", id: 408895572
