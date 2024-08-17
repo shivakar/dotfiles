@@ -1,0 +1,18 @@
+REPO=$HOME/dotfiles
+git -C $REPO remote update >/dev/null 2>&1
+UP_TO_DATE=$(git -C $REPO status -uno | grep "Your branch is up to date")
+
+if [ -z "$UP_TO_DATE" ]; then
+  MESSAGE=$(git -C $REPO status -uno | grep -B1 -E 'ahead|behind|different' | sed 's/Your branch/Your local dotfiles/g')
+  # The following read is in a specific format to allow for information to be presented before asking for input.
+  # Using echo will just buffer the MESSAGE until RESPONSE is read.
+  read -q "RESPONSE?
+${MESSAGE}
+Do you want to update? (y/N): "
+  echo
+  if [[ "$RESPONSE" =~ ^[Yy]$ ]]; then
+    git -C $REPO pull --ff-only
+  else
+    echo "Not updating dotfiles on user request."
+  fi
+fi

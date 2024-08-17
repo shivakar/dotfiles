@@ -61,6 +61,7 @@ zsh:
 	@ln -sf "$$(pwd)/zsh/inputrc" "$$HOME/.inputrc"
 	@ln -sf "$$(pwd)/zsh/p10k.zsh" "$$HOME/.p10k.zsh"
 	@ln -sf "$$(pwd)/zsh/zprofile" "$$HOME/.zprofile"
+	@ln -sf "$$(pwd)/zsh/zlogin" "$$HOME/.zlogin"
 	@touch "$$HOME/.localbashrc"
 
 tmux:
@@ -139,4 +140,6 @@ clean:
 	rm ~/.tmux.conf
 	rm ~/.vim
 	rm ~/.zshrc
+	rm ~/.zprofile
+	rm ~/.zlogin
 	rm ~/.config/nvim ~/.local/share/nvim ~/.local/state/nvim
