@@ -58,6 +58,7 @@ type mcfly &>/dev/null && eval "$(mcfly init zsh)"
 
 
 # PATH extra
+[[ -d /opt/node/latest/bin ]] && export PATH="/opt/node/latest/bin:$PATH"
 [[ -d /opt/neovim/latest ]] && export PATH="/opt/neovim/latest/bin:$PATH"
 [[ -d /opt/go/latest ]] && export PATH="/opt/go/latest/bin:$PATH"
 [[ -d /opt/lsp/lua-language-server/latest ]] && export PATH="/opt/lsp/lua-language-server/latest/bin:$PATH"
