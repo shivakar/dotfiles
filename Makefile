@@ -8,7 +8,7 @@ OP_CMD := $(shell if [ -z "$$OPTOKEN" ]; then echo "op"; else echo "op --session
 
 all: setup
 
-setup: setup-macos setup-linux zsh tmux ssh gnupg gitconfig nvim done
+setup: setup-macos setup-linux zsh tmux ssh gnupg gitconfig nvim asciinema done
 
 check-op:
 	@if [ -z "$$OPTOKEN" ]; then \
@@ -114,6 +114,10 @@ nvim:
 	@echo "Setting up Neovim configuration"; \
 	ln -sf "$$(pwd)/nvim" "$$HOME/.config/nvim"; \
 	echo "Remember to manually install lua-language-server and superhtml..."
+
+asciinema:
+	@echo "Setting up asciinema configuration"; \
+	ln -sf "$$(pwd)/asciinema.conf" "$$HOME/.config/asciinema/config"
 
 gotools:
 	go install github.com/junegunn/fzf@latest
