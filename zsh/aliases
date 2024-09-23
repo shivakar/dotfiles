@@ -73,6 +73,8 @@ alias kx=kubectx
 #-------------------------------------------------------------------------------
 # Utilities
 #-------------------------------------------------------------------------------
+alias pdfjoin='/System/Library/Automator/Combine\ PDF\ Pages.action/Contents/MacOS/join'
+
 function lcd() {
     type bfind &> /dev/null || exit
     d=$(bfind -type d -1 -name "$@" $(pwd))
