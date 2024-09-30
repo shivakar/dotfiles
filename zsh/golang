@@ -5,12 +5,18 @@ alias gmv='go mod vendor'
 
 # Function to `go get` from URLs copied from browser
 function _ggc() {
-    imports=($@)
-    for i in "${imports[@]}"; do
-        i=${i#http*://}
-        i=${i#git*://}
-        GO111MODULE=off go get -u $i
-    done
+    if [ -z "$1" ]; then
+        echo "Usage: clone_to_gopath <repository-url>"
+        return 1
+    fi
+
+    repo_url="$1"
+    repo_path=$(echo "$repo_url" | sed -e 's/^https:\/\///' -e 's/^git@//' -e 's/:/\//' -e 's/\.git$//')
+
+    target_dir="$HOME/go/src/$repo_path"
+
+    mkdir -p "$target_dir"
+    git clone "$repo_url" "$target_dir"
 }
 alias gg=_ggc
 
