@@ -48,3 +48,4 @@ util-linux-user
 wget
 xclip
 zsh
+pinentry-tty

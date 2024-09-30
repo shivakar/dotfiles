@@ -117,6 +117,7 @@ nvim:
 
 asciinema:
 	@echo "Setting up asciinema configuration"; \
+	mkdir -p "$$HOME/.config/asciinema"; \
 	ln -sf "$$(pwd)/asciinema.conf" "$$HOME/.config/asciinema/config"
 
 gotools:
